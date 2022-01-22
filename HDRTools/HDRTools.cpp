@@ -31,322 +31,326 @@
 #define AVX2_BUILD_POSSIBLE
 #endif
 
-static ThreadPoolInterface *poolInterface;
+#ifndef _WIN32
+#define MS_ABI __attribute__((ms_abi))
+#else
+#define MS_ABI
+#endif
 
-extern "C" void JPSDR_HDRTools_LookupRGB32_RGB32HLG(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_LookupRGB32_RGB32HLG(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_LookupRGB32_RGB64HLG(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_LookupRGB32_RGB64HLG(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_LookupRGB32_RGB64HLGb(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_LookupRGB32_RGB64HLGb(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_LookupRGB32(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_LookupRGB32(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_LookupRGB32toRGB64(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_LookupRGB32toRGB64(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_LookupRGB64(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_LookupRGB64(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_Lookup_Planar8(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_Lookup_Planar8(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_Lookup_Planar16(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_Lookup_Planar16(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_Lookup_Planar32(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_Lookup_Planar32(const void *src,void *dst,int32_t w,int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo,const void *lookup);
-extern "C" void JPSDR_HDRTools_Lookup2_Planar32(const void *src,void *dst1,void *dst2,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Lookup2_Planar32(const void *src,void *dst1,void *dst2,int32_t w,
 	int32_t h,ptrdiff_t src_modulo,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,const void *lookup1,const void *lookup2);
 
-extern "C" void JPSDR_HDRTools_Move8to16(void *dst,const void *src,int32_t w);
-extern "C" void JPSDR_HDRTools_Move8to16_SSE2(void *dst,const void *src,int32_t w);
-extern "C" void JPSDR_HDRTools_Move8to16_AVX(void *dst,const void *src,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Move8to16(void *dst,const void *src,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Move8to16_SSE2(void *dst,const void *src,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Move8to16_AVX(void *dst,const void *src,int32_t w);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_8_SSE2(const void *scr_1,const void *src_2,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_8to16_SSE2(const void *scr_1,const void *src_2,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_16_SSE2(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_8_SSE2(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_8to16_SSE2(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_16_SSE2(const void *scr_1,const void *src_2,void *dst,int32_t w);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_8_AVX(const void *scr_1,const void *src_2,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_8to16_AVX(const void *scr_1,const void *src_2,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_16_AVX(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_8_AVX(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_8to16_AVX(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_16_AVX(const void *scr_1,const void *src_2,void *dst,int32_t w);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar444_8_SSE2(const void *scr,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar444_8to16_SSE2(const void *scr,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar444_16_SSE2(const void *scr,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar444_8_SSE2(const void *scr,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar444_8to16_SSE2(const void *scr,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar444_16_SSE2(const void *scr,void *dst,int32_t w);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar444_8_AVX(const void *scr,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar444_8to16_AVX(const void *scr,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar444_16_AVX(const void *scr,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar444_8_AVX(const void *scr,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar444_8to16_AVX(const void *scr,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar444_16_AVX(const void *scr,void *dst,int32_t w);
 
-extern "C" void JPSDR_HDRTools_Convert_YV24toRGB32_SSE2(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_YV24toRGB32_SSE2(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int16_t offset_R,int16_t offset_G,int16_t offset_B,const int16_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_YV24toRGB32_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_YV24toRGB32_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int16_t offset_R,int16_t offset_G,int16_t offset_B,const int16_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
 
-extern "C" void JPSDR_HDRTools_Convert_8_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_8_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_10_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_10_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_12_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_12_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_14_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_14_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_16_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
-	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
-	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-
-extern "C" void JPSDR_HDRTools_Convert_8_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
-	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
-	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_10_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
-	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
-	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_12_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
-	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
-	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_14_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
-	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
-	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_16_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_YV24toRGB64_SSE41(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
 	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
 	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
 
-extern "C" void JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_SSE41(const void *srcR,const void *srcG,const void *srcB,void *dst,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_8_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
+	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_10_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
+	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_12_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
+	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_14_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
+	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_YV24toRGB64_AVX(const void *src_y,const void *src_u,const void *src_v,void *dst,int32_t w,
+	int32_t h,int32_t offset_R,int32_t offset_G,int32_t offset_B,const int32_t *lookup,
+	ptrdiff_t src_modulo_Y,ptrdiff_t src_modulo_U,ptrdiff_t src_modulo_V,ptrdiff_t dst_modulo);
+
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_SSE41(const void *srcR,const void *srcG,const void *srcB,void *dst,
 	int32_t w,int32_t h,const void *lookup,ptrdiff_t src_modulo_R,ptrdiff_t src_modulo_G,ptrdiff_t src_modulo_B,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_AVX(const void *srcR,const void *srcG,const void *srcB,void *dst,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_AVX(const void *srcR,const void *srcG,const void *srcB,void *dst,
 	int32_t w,int32_t h,const void *lookup,ptrdiff_t src_modulo_R,ptrdiff_t src_modulo_G,ptrdiff_t src_modulo_B,ptrdiff_t dst_modulo);
 
-extern "C" void JPSDR_HDRTools_Convert_RGBPStoRGB64_SSE41(const void *srcR,const void *srcG,const void *srcB,void *dst,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPStoRGB64_SSE41(const void *srcR,const void *srcG,const void *srcB,void *dst,
 	int32_t w,int32_t h,ptrdiff_t src_pitch_R,ptrdiff_t src_pitch_G,ptrdiff_t src_pitch_B,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGBPStoRGB64_AVX(const void *srcR,const void *srcG,const void *srcB,void *dst,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPStoRGB64_AVX(const void *srcR,const void *srcG,const void *srcB,void *dst,
 	int32_t w,int32_t h,ptrdiff_t src_pitch_R,ptrdiff_t src_pitch_G,ptrdiff_t src_pitch_B,ptrdiff_t dst_pitch);
 
-extern "C" void JPSDR_HDRTools_Convert_RGB32toYV24_SSE2(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB32toYV24_SSE2(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
 	int16_t offset_Y,int16_t offset_U,int16_t offset_V,const int16_t *lookup, ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo_Y,ptrdiff_t dst_modulo_U,ptrdiff_t dst_modulo_V,int16_t Min_Y,int16_t Max_Y,
 	int16_t Min_U,int16_t Max_U,int16_t Min_V,int16_t Max_V);
-extern "C" void JPSDR_HDRTools_Convert_RGB32toYV24_AVX(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB32toYV24_AVX(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
 	int16_t offset_Y,int16_t offset_U,int16_t offset_V,const int16_t *lookup, ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo_Y,ptrdiff_t dst_modulo_U,ptrdiff_t dst_modulo_V,int16_t Min_Y,int16_t Max_Y,
 	int16_t Min_U,int16_t Max_U,int16_t Min_V,int16_t Max_V);
 
-extern "C" void JPSDR_HDRTools_Convert_RGB64toYV24_SSE41(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64toYV24_SSE41(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
 	int32_t offset_Y,int32_t offset_U,int32_t offset_V,const int32_t *lookup, ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo_Y,ptrdiff_t dst_modulo_U,ptrdiff_t dst_modulo_V,uint16_t Min_Y,uint16_t Max_Y,
 	uint16_t Min_U,uint16_t Max_U,uint16_t Min_V,uint16_t Max_V);
-extern "C" void JPSDR_HDRTools_Convert_RGB64toYV24_AVX(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64toYV24_AVX(const void *src,void *dst_y,void *dst_u,void *dst_v,int32_t w,int32_t h,
 	int32_t offset_Y,int32_t offset_U,int32_t offset_V,const int32_t *lookup, ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo_Y,ptrdiff_t dst_modulo_U,ptrdiff_t dst_modulo_V,uint16_t Min_Y,uint16_t Max_Y,
 	uint16_t Min_U,uint16_t Max_U,uint16_t Min_V,uint16_t Max_V);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar444_to_Planar422_8(const void *src,void *dst,int32_t w, int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar444_to_Planar422_8(const void *src,void *dst,int32_t w, int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_Planar444_to_Planar422_16(const void *src,void *dst,int32_t w, int32_t h,ptrdiff_t src_modulo,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar444_to_Planar422_16(const void *src,void *dst,int32_t w, int32_t h,ptrdiff_t src_modulo,
 	ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_SSE2(const void *src,void *dst,int32_t w16, int32_t h,ptrdiff_t src_pitch,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_SSE2(const void *src,void *dst,int32_t w16, int32_t h,ptrdiff_t src_pitch,
 	ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_SSE41(const void *src,void *dst,int32_t w8, int32_t h,ptrdiff_t src_pitch,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_SSE41(const void *src,void *dst,int32_t w8, int32_t h,ptrdiff_t src_pitch,
 	ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_AVX(const void *src,void *dst,int32_t w16, int32_t h,ptrdiff_t src_pitch,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_AVX(const void *src,void *dst,int32_t w16, int32_t h,ptrdiff_t src_pitch,
 	ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_AVX(const void *src,void *dst,int32_t w8, int32_t h,ptrdiff_t src_pitch,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_AVX(const void *src,void *dst,int32_t w8, int32_t h,ptrdiff_t src_pitch,
 	ptrdiff_t dst_pitch);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_SSE2(const void *src1,const void *src2,void *dst,int32_t w16, int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_SSE2(const void *src1,const void *src2,void *dst,int32_t w16, int32_t h,
 	ptrdiff_t src_pitch2,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_SSE2(const void *src1,const void *src2,void *dst,int32_t w8, int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_SSE2(const void *src1,const void *src2,void *dst,int32_t w8, int32_t h,
 	ptrdiff_t src_pitch2,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_AVX(const void *src1,const void *src2,void *dst,int32_t w16, int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_AVX(const void *src1,const void *src2,void *dst,int32_t w16, int32_t h,
 	ptrdiff_t src_pitch2,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_AVX(const void *src1,const void *src2,void *dst,int32_t w8, int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_AVX(const void *src1,const void *src2,void *dst,int32_t w8, int32_t h,
 	ptrdiff_t src_pitch2,ptrdiff_t dst_pitch);
 
 
 #ifdef AVX2_BUILD_POSSIBLE
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_8_AVX2(const void *scr_1,const void *src_2,void *dst,int32_t w);
-extern "C" void JPSDR_HDRTools_Convert_Planar420_to_Planar422_16_AVX2(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_8_AVX2(const void *scr_1,const void *src_2,void *dst,int32_t w);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar420_to_Planar422_16_AVX2(const void *scr_1,const void *src_2,void *dst,int32_t w);
 
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_AVX2(const void *src1,const void *src2,void *dst,int32_t w32, int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_AVX2(const void *src1,const void *src2,void *dst,int32_t w32, int32_t h,
 	ptrdiff_t src_pitch2,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_AVX2(const void *src1,const void *src2,void *dst,int32_t w16, int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_AVX2(const void *src1,const void *src2,void *dst,int32_t w16, int32_t h,
 	ptrdiff_t src_pitch2,ptrdiff_t dst_pitch);
 #endif
 
-extern "C" void JPSDR_HDRTools_Convert_PackedXYZ_8_SSE2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PackedXYZ_8_SSE2(const void *src,void *dst,int32_t w,int32_t h,
 	const void *lookup,ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_PackedXYZ_8_AVX(const void *src,void *dst,int32_t w,int32_t h,
-	const void *lookup,ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-
-extern "C" void JPSDR_HDRTools_Convert_PackedXYZ_16_SSE41(const void *src,void *dst,int32_t w,int32_t h,
-	const void *lookup,ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_PackedXYZ_16_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PackedXYZ_8_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	const void *lookup,ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
 
-extern "C" void JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_SSE2(const void *src1,const void *src2,const void *src3,
-	void *dst1,void *dst2,void *dst3,int32_t w,int32_t h,const float *Coeff,ptrdiff_t src_modulo1,ptrdiff_t src_modulo2,
-	ptrdiff_t src_modulo3,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,ptrdiff_t dst_modulo3);
-extern "C" void JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_AVX(const void *src1,const void *src2,const void *src3,
-	void *dst1,void *dst2,void *dst3,int32_t w,int32_t h,const float *Coeff,ptrdiff_t src_modulo1,ptrdiff_t src_modulo2,
-	ptrdiff_t src_modulo3,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,ptrdiff_t dst_modulo3);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PackedXYZ_16_SSE41(const void *src,void *dst,int32_t w,int32_t h,
+	const void *lookup,ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PackedXYZ_16_AVX(const void *src,void *dst,int32_t w,int32_t h,
+	const void *lookup,ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
 
-extern "C" void JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_SSE2(const void *src1,const void *src2,const void *src3,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_SSE2(const void *src1,const void *src2,const void *src3,
 	void *dst1,void *dst2,void *dst3,int32_t w,int32_t h,const float *Coeff,ptrdiff_t src_modulo1,ptrdiff_t src_modulo2,
 	ptrdiff_t src_modulo3,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,ptrdiff_t dst_modulo3);
-extern "C" void JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_AVX(const void *src1,const void *src2,const void *src3,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_AVX(const void *src1,const void *src2,const void *src3,
 	void *dst1,void *dst2,void *dst3,int32_t w,int32_t h,const float *Coeff,ptrdiff_t src_modulo1,ptrdiff_t src_modulo2,
 	ptrdiff_t src_modulo3,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,ptrdiff_t dst_modulo3);
 
-extern "C" void JPSDR_HDRTools_Convert_RGB64toRGB32_SSE2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_SSE2(const void *src1,const void *src2,const void *src3,
+	void *dst1,void *dst2,void *dst3,int32_t w,int32_t h,const float *Coeff,ptrdiff_t src_modulo1,ptrdiff_t src_modulo2,
+	ptrdiff_t src_modulo3,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,ptrdiff_t dst_modulo3);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_AVX(const void *src1,const void *src2,const void *src3,
+	void *dst1,void *dst2,void *dst3,int32_t w,int32_t h,const float *Coeff,ptrdiff_t src_modulo1,ptrdiff_t src_modulo2,
+	ptrdiff_t src_modulo3,ptrdiff_t dst_modulo1,ptrdiff_t dst_modulo2,ptrdiff_t dst_modulo3);
+
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64toRGB32_SSE2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64toRGB32_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64toRGB32_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB32toPlaneY16_SSE2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB32toPlaneY16_SSE2(const void *src,void *dst,int32_t w,int32_t h,
 	const int16_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_RGB32toPlaneY16_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB32toPlaneY16_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	const int16_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_RGB64toPlaneY16_SSE41(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64toPlaneY16_SSE41(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_RGB64toPlaneY16_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64toPlaneY16_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_SSE41(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_SSE41(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_SSE41(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_SSE41(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_SSE41(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_SSE41(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
-extern "C" void JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	const int32_t *lookup, ptrdiff_t src_modulo,ptrdiff_t dst_modulo);
 
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_SSE2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_SSE2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_SSE2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_SSE2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_SSE2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_SSE2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_AVX(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_AVX(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
 
-extern "C" void JPSDR_HDRTools_Scale_HLG_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_HLG_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
-extern "C" void JPSDR_HDRTools_Scale_HLG_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_HLG_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
-extern "C" void JPSDR_HDRTools_Scale_20_float_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_float_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Scale_20_float_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_float_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
 
-extern "C" void JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_SSE2(const void *srcR,const void *srcG,const void *srcB,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_SSE2(const void *srcR,const void *srcG,const void *srcB,
 	void *dst,int32_t w4,int32_t h,ptrdiff_t src_pitchR,ptrdiff_t src_pitchG,ptrdiff_t src_pitchB,
 	ptrdiff_t dst_pitch,float *Coeff_R,float *Coeff_G,float *Coeff_B);
-extern "C" void JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_SSE2(const void *srcR,const void *srcG,const void *srcB,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_SSE2(const void *srcR,const void *srcG,const void *srcB,
 	void *dst,int32_t w4,int32_t h,ptrdiff_t src_pitchR,ptrdiff_t src_pitchG,ptrdiff_t src_pitchB,
 	ptrdiff_t dst_pitch,float *Coeff_R,float *Coeff_G,float *Coeff_B);
-extern "C" void JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_AVX(const void *srcR,const void *srcG,const void *srcB,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_AVX(const void *srcR,const void *srcG,const void *srcB,
 	void *dst,int32_t w8,int32_t h,ptrdiff_t src_pitchR,ptrdiff_t src_pitchG,ptrdiff_t src_pitchB,
 	ptrdiff_t dst_pitch,float *Coeff_R,float *Coeff_G,float *Coeff_B);
-extern "C" void JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_AVX(const void *srcR,const void *srcG,const void *srcB,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_AVX(const void *srcR,const void *srcG,const void *srcB,
 	void *dst,int32_t w8,int32_t h,ptrdiff_t src_pitchR,ptrdiff_t src_pitchG,ptrdiff_t src_pitchB,
 	ptrdiff_t dst_pitch,float *Coeff_R,float *Coeff_G,float *Coeff_B);
 
-extern "C" void JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_SSE41(void *dst,void *srcY,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_SSE41(void *dst,void *srcY,int32_t w,int32_t h,
 	ptrdiff_t dst_pitch,ptrdiff_t src_pitchY);
-extern "C" void JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_AVX(void *dst,void *srcY,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_AVX(void *dst,void *srcY,int32_t w,int32_t h,
 	ptrdiff_t dst_pitch,ptrdiff_t src_pitchY);
 
-extern "C" void JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_SSE2(void *dstR,void *dstG,void *dstB,void *srcY,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_SSE2(void *dstR,void *dstG,void *dstB,void *srcY,
 	int32_t w4,int32_t h,ptrdiff_t dst_pitchR,ptrdiff_t dst_pitchG,ptrdiff_t dst_pitchB,ptrdiff_t src_pitchY);
-extern "C" void JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_AVX(void *dstR,void *dstG,void *dstB,void *srcY,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_AVX(void *dstR,void *dstG,void *dstB,void *srcY,
 	int32_t w8,int32_t h,ptrdiff_t dst_pitchR,ptrdiff_t dst_pitchG,ptrdiff_t dst_pitchB,ptrdiff_t src_pitchY);
-extern "C" void JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_SSE2(void *dstR,void *dstG,void *dstB,void *srcY,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_SSE2(void *dstR,void *dstG,void *dstB,void *srcY,
 	int32_t w4,int32_t h,ptrdiff_t dst_pitchR,ptrdiff_t dst_pitchG,ptrdiff_t dst_pitchB,ptrdiff_t src_pitchY);
-extern "C" void JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_AVX(void *dstR,void *dstG,void *dstB,void *srcY,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_AVX(void *dstR,void *dstG,void *dstB,void *srcY,
 	int32_t w8,int32_t h,ptrdiff_t dst_pitchR,ptrdiff_t dst_pitchG,ptrdiff_t dst_pitchB,ptrdiff_t src_pitchY);
 
-extern "C" void JPSDR_HDRTools_Scale_20_XYZ_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_XYZ_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *ValMin,float *Coeff);
-extern "C" void JPSDR_HDRTools_Scale_20_XYZ_SSE41(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_XYZ_SSE41(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *ValMin,float *Coeff);
-extern "C" void JPSDR_HDRTools_Scale_20_XYZ_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_XYZ_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *ValMin,float *Coeff);
 	
-extern "C" void JPSDR_HDRTools_Scale_20_RGB_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_RGB_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Scale_20_RGB_SSE41(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_RGB_SSE41(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Scale_20_RGB_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_RGB_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
 	
-extern "C" void JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
-extern "C" void JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_AVX(const void *src,void *dst,int32_t w8,int32_t h,
-	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
-
-extern "C" void JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
-	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
-extern "C" void JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
 
-extern "C" void JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff);
+
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff1,float *Coeff2,float *Coeff3,float *Coeff4,
 	float *Coeff5,float *Coeff6);
-extern "C" void JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff1,float *Coeff2,float *Coeff3,float *Coeff4,
 	float *Coeff5,float *Coeff6);
 
-extern "C" void JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff1,float *Coeff2,float *Coeff3,float *Coeff4);
-extern "C" void JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff1,float *Coeff2,float *Coeff3,float *Coeff4);
 
-extern "C" void JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_SSE2(const void *src,void *dst,int32_t w4,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff1,float *Coeff2);
-extern "C" void JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_AVX(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_AVX(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *Coeff1,float *Coeff2);
 
 
-extern "C" void JPSDR_HDRTools_BT2446C_16_XYZ_SSE2(const void *src,void *dst1,void *dst2,int32_t w4,
+extern "C" void MS_ABI JPSDR_HDRTools_BT2446C_16_XYZ_SSE2(const void *src,void *dst1,void *dst2,int32_t w4,
 	int32_t h,ptrdiff_t src_pitch,ptrdiff_t dst_pitch1,ptrdiff_t dst_pitch2,float *ValMinX,float *CoeffX,
 	float *ValMinZ,float *CoeffZ);
-extern "C" void JPSDR_HDRTools_BT2446C_16_XYZ_SSE41(const void *src,void *dst1,void *dst2,int32_t w4,
+extern "C" void MS_ABI JPSDR_HDRTools_BT2446C_16_XYZ_SSE41(const void *src,void *dst1,void *dst2,int32_t w4,
 	int32_t h,ptrdiff_t src_pitch,ptrdiff_t dst_pitch1,ptrdiff_t dst_pitch2,float *ValMinX,float *CoeffX,
 	float *ValMinZ,float *CoeffZ);
-extern "C" void JPSDR_HDRTools_BT2446C_16_XYZ_AVX(const void *src,void *dst1,void *dst2,int32_t w8,
+extern "C" void MS_ABI JPSDR_HDRTools_BT2446C_16_XYZ_AVX(const void *src,void *dst1,void *dst2,int32_t w8,
 	int32_t h,ptrdiff_t src_pitch,ptrdiff_t dst_pitch1,ptrdiff_t dst_pitch2,float *ValMinX,float *CoeffX,
 	float *ValMinZ,float *CoeffZ);
 
-extern "C" void JPSDR_HDRTools_BT2446C_32_XYZ_SSE2(const void *src1,const void *src2,void *dst1,void *dst2,int32_t w4,
+extern "C" void MS_ABI JPSDR_HDRTools_BT2446C_32_XYZ_SSE2(const void *src1,const void *src2,void *dst1,void *dst2,int32_t w4,
 	int32_t h,ptrdiff_t src_pitch1,ptrdiff_t src_pitch2,ptrdiff_t dst_pitch1,ptrdiff_t dst_pitch2);
-extern "C" void JPSDR_HDRTools_BT2446C_32_XYZ_AVX(const void *src1,const void *src2,void *dst1,void *dst2,int32_t w8,
+extern "C" void MS_ABI JPSDR_HDRTools_BT2446C_32_XYZ_AVX(const void *src1,const void *src2,void *dst1,void *dst2,int32_t w8,
 	int32_t h,ptrdiff_t src_pitch1,ptrdiff_t src_pitch2,ptrdiff_t dst_pitch1,ptrdiff_t dst_pitch2);
 
 
 #ifdef AVX2_BUILD_POSSIBLE
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_AVX2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_AVX2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_AVX2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_AVX2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
-extern "C" void JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_AVX2(const void *src,void *dst,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_AVX2(const void *src,void *dst,int32_t w,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
 
-extern "C" void JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_AVX2(void *dst,void *srcY,int32_t w,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_AVX2(void *dst,void *srcY,int32_t w,int32_t h,
 	ptrdiff_t dst_pitch,ptrdiff_t src_pitchY);
 
-extern "C" void JPSDR_HDRTools_Scale_20_XYZ_AVX2(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_XYZ_AVX2(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch,float *ValMin,float *Coeff);
-extern "C" void JPSDR_HDRTools_Scale_20_RGB_AVX2(const void *src,void *dst,int32_t w8,int32_t h,
+extern "C" void MS_ABI JPSDR_HDRTools_Scale_20_RGB_AVX2(const void *src,void *dst,int32_t w8,int32_t h,
 	ptrdiff_t src_pitch,ptrdiff_t dst_pitch);
 
-extern "C" void JPSDR_HDRTools_BT2446C_16_XYZ_AVX2(const void *src,void *dst1,void *dst2,int32_t w8,
+extern "C" void MS_ABI JPSDR_HDRTools_BT2446C_16_XYZ_AVX2(const void *src,void *dst1,void *dst2,int32_t w8,
 	int32_t h,ptrdiff_t src_pitch,ptrdiff_t dst_pitch1,ptrdiff_t dst_pitch2,float *ValMinX,float *CoeffX,
 	float *ValMinZ,float *CoeffZ);
 #endif
@@ -422,100 +426,21 @@ typedef union _UXYZ64
 uint8_t CreateMTData(MT_Data_Info_HDRTools MT_Data[],uint8_t max_threads,uint8_t threads_number,int32_t size_x,int32_t size_y,
 	bool div_src_w_UV,bool div_src_h_UV,bool div_dst_w_UV,bool div_dst_h_UV)
 {
-	if ((max_threads<=1) || (max_threads>threads_number))
-	{
-		MT_Data[0].top=true;
-		MT_Data[0].bottom=true;
-		MT_Data[0].src_Y_h_min=0;
-		MT_Data[0].dst_Y_h_min=0;
-		MT_Data[0].src_Y_h_max=size_y;
-		MT_Data[0].dst_Y_h_max=size_y;
-		MT_Data[0].src_UV_h_min=0;
-		MT_Data[0].dst_UV_h_min=0;
-		MT_Data[0].src_UV_h_max=div_src_h_UV ? size_y >> 1:size_y;
-		MT_Data[0].dst_UV_h_max=div_dst_h_UV ? size_y >> 1:size_y;
-		MT_Data[0].src_Y_w=size_x;
-		MT_Data[0].dst_Y_w=size_x;
-		MT_Data[0].src_UV_w=div_src_w_UV ? size_x >> 1:size_x;
-		MT_Data[0].dst_UV_w=div_dst_w_UV ? size_x >> 1:size_x;
-		return(1);
-	}
-
-	int32_t dh_Y,src_dh_UV,dst_dh_UV,h_y;
-	uint8_t i,max=1;
-
-	dh_Y=(size_y+(int32_t)max_threads-1)/(int32_t)max_threads;
-	if (dh_Y<16) dh_Y=16;
-	if ((dh_Y & 3)!=0) dh_Y=((dh_Y+3) >> 2) << 2;
-
-	h_y=dh_Y;
-	while (h_y<(size_y-16))
-	{
-		max++;
-		h_y+=dh_Y;
-	}
-
-	if (max==1)
-	{
-		MT_Data[0].top=true;
-		MT_Data[0].bottom=true;
-		MT_Data[0].src_Y_h_min=0;
-		MT_Data[0].dst_Y_h_min=0;
-		MT_Data[0].src_Y_h_max=size_y;
-		MT_Data[0].dst_Y_h_max=size_y;
-		MT_Data[0].src_UV_h_min=0;
-		MT_Data[0].dst_UV_h_min=0;
-		MT_Data[0].src_UV_h_max=div_src_h_UV ? size_y >> 1:size_y;
-		MT_Data[0].dst_UV_h_max=div_dst_h_UV ? size_y >> 1:size_y;
-		MT_Data[0].src_Y_w=size_x;
-		MT_Data[0].dst_Y_w=size_x;
-		MT_Data[0].src_UV_w=div_src_w_UV ? size_x >> 1:size_x;
-		MT_Data[0].dst_UV_w=div_dst_w_UV ? size_x >> 1:size_x;
-		return(1);
-	}
-
-	src_dh_UV=div_src_h_UV ? dh_Y>>1:dh_Y;
-	dst_dh_UV=div_dst_h_UV ? dh_Y>>1:dh_Y;
-
 	MT_Data[0].top=true;
-	MT_Data[0].bottom=false;
+	MT_Data[0].bottom=true;
 	MT_Data[0].src_Y_h_min=0;
-	MT_Data[0].src_Y_h_max=dh_Y;
 	MT_Data[0].dst_Y_h_min=0;
-	MT_Data[0].dst_Y_h_max=dh_Y;
+	MT_Data[0].src_Y_h_max=size_y;
+	MT_Data[0].dst_Y_h_max=size_y;
 	MT_Data[0].src_UV_h_min=0;
-	MT_Data[0].src_UV_h_max=src_dh_UV;
 	MT_Data[0].dst_UV_h_min=0;
-	MT_Data[0].dst_UV_h_max=dst_dh_UV;
-
-	i=1;
-	while (i<max)
-	{
-		MT_Data[i].top=false;
-		MT_Data[i].bottom=false;
-		MT_Data[i].src_Y_h_min=MT_Data[i-1].src_Y_h_max;
-		MT_Data[i].src_Y_h_max=MT_Data[i].src_Y_h_min+dh_Y;
-		MT_Data[i].dst_Y_h_min=MT_Data[i-1].dst_Y_h_max;
-		MT_Data[i].dst_Y_h_max=MT_Data[i].dst_Y_h_min+dh_Y;
-		MT_Data[i].src_UV_h_min=MT_Data[i-1].src_UV_h_max;
-		MT_Data[i].src_UV_h_max=MT_Data[i].src_UV_h_min+src_dh_UV;
-		MT_Data[i].dst_UV_h_min=MT_Data[i-1].dst_UV_h_max;
-		MT_Data[i].dst_UV_h_max=MT_Data[i].dst_UV_h_min+dst_dh_UV;
-		i++;
-	}
-	MT_Data[max-1].bottom=true;
-	MT_Data[max-1].src_Y_h_max=size_y;
-	MT_Data[max-1].dst_Y_h_max=size_y;
-	MT_Data[max-1].src_UV_h_max=div_src_h_UV ? size_y >> 1:size_y;
-	MT_Data[max-1].dst_UV_h_max=div_dst_h_UV ? size_y >> 1:size_y;
-	for (i=0; i<max; i++)
-	{
-		MT_Data[i].src_Y_w=size_x;
-		MT_Data[i].dst_Y_w=size_x;
-		MT_Data[i].src_UV_w=div_src_w_UV ? size_x >> 1:size_x;
-		MT_Data[i].dst_UV_w=div_dst_w_UV ? size_x >> 1:size_x;
-	}
-	return(max);
+	MT_Data[0].src_UV_h_max=div_src_h_UV ? size_y >> 1:size_y;
+	MT_Data[0].dst_UV_h_max=div_dst_h_UV ? size_y >> 1:size_y;
+	MT_Data[0].src_Y_w=size_x;
+	MT_Data[0].dst_Y_w=size_x;
+	MT_Data[0].src_UV_w=div_src_w_UV ? size_x >> 1:size_x;
+	MT_Data[0].dst_UV_w=div_dst_w_UV ? size_x >> 1:size_x;
+	return(1);
 }
 
 
@@ -12342,16 +12267,6 @@ ConvertYUVtoLinearRGB::ConvertYUVtoLinearRGB(PClip _child,uint8_t _Color,uint8_t
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -12379,7 +12294,6 @@ ConvertYUVtoLinearRGB::ConvertYUVtoLinearRGB(PClip _child,uint8_t _Color,uint8_t
 		|| (lookupL_16==NULL) || (lookupL_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertYUVtoLinearRGB: Error while allocating the lookup tables!");
 	}
 
@@ -12463,7 +12377,6 @@ ConvertYUVtoLinearRGB::ConvertYUVtoLinearRGB(PClip _child,uint8_t _Color,uint8_t
 		if ((lookupHLG_RGB_16==NULL) || (lookupHLG_OOTF==NULL) || (alloc_inv_ootf && (lookupHLG_inv_OOTF==NULL)))
 		{
 			FreeData();
-			if (threads>1) poolInterface->DeAllocateAllThreads(true);
 			env->ThrowError("ConvertYUVtoLinearRGB: Error while allocating the HLG lookup tables!");
 		}
 	}
@@ -12477,7 +12390,6 @@ ConvertYUVtoLinearRGB::ConvertYUVtoLinearRGB(PClip _child,uint8_t _Color,uint8_t
 	if ((vi_original==NULL) || (vi_422==NULL) || (vi_444==NULL) || (vi_RGB64==NULL) || (HLG_Mode && (vi_PlaneY_HLG==NULL)))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertYUVtoLinearRGB: Error while creating VideoInfo!");
 	}
 
@@ -13322,16 +13234,6 @@ ConvertYUVtoLinearRGB::ConvertYUVtoLinearRGB(PClip _child,uint8_t _Color,uint8_t
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (max_threads>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -13360,9 +13262,7 @@ void ConvertYUVtoLinearRGB::FreeData(void)
 
 ConvertYUVtoLinearRGB::~ConvertYUVtoLinearRGB() 
 {
-	if (max_threads>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -13378,61 +13278,7 @@ int __stdcall ConvertYUVtoLinearRGB::SetCacheHints(int cachehints,int frame_rang
 }
 
 
-void ConvertYUVtoLinearRGB::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertYUVtoLinearRGB *ptrClass=(ConvertYUVtoLinearRGB *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_Progressive_8_YV12toYV16(*mt_data_inf,ptrClass->lookup_Upscale8); break;
-		case 2 : Convert_Progressive_8_YV12toYV16_SSE2(*mt_data_inf); break;
-		case 3 : Convert_Progressive_8_YV12toYV16_AVX(*mt_data_inf); break;
-		case 5 : Convert_Progressive_8to16_YV12toYV16(*mt_data_inf,ptrClass->lookup_Upscale16,ptrClass->lookup_8to16); break;
-		case 6 : Convert_Progressive_8to16_YV12toYV16_SSE2(*mt_data_inf,ptrClass->lookup_Upscale16,ptrClass->lookup_8to16); break;
-		case 7 : Convert_Progressive_8to16_YV12toYV16_AVX(*mt_data_inf,ptrClass->lookup_Upscale16,ptrClass->lookup_8to16); break;
-		case 8 : Convert_Progressive_16_YV12toYV16(*mt_data_inf,ptrClass->lookup_Upscale16); break;
-		case 9 : Convert_Progressive_16_YV12toYV16_SSE2(*mt_data_inf); break;
-		case 10 : Convert_Progressive_16_YV12toYV16_AVX(*mt_data_inf); break;
-		case 12 : Convert_8_YV16toYV24(*mt_data_inf); break;
-		case 13 : Convert_8_YV16toYV24_SSE2(*mt_data_inf); break;
-		case 14 : Convert_8_YV16toYV24_AVX(*mt_data_inf); break;
-		case 15 : Convert_8to16_YV16toYV24(*mt_data_inf,ptrClass->lookup_8to16); break;
-		case 16 : Convert_8to16_YV16toYV24_SSE2(*mt_data_inf,ptrClass->lookup_8to16); break;
-		case 17 : Convert_8to16_YV16toYV24_AVX(*mt_data_inf,ptrClass->lookup_8to16); break;
-		case 18 : Convert_16_YV16toYV24(*mt_data_inf); break;
-		case 19 : Convert_16_YV16toYV24_SSE2(*mt_data_inf); break;
-		case 20 : Convert_16_YV16toYV24_AVX(*mt_data_inf); break;
-		case 21 : Convert_YV24toRGB32(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 22 : Convert_YV24toRGB32_SSE2(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 23 : Convert_YV24toRGB32_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 24 : Convert_8_YV24toRGB64(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 25 : Convert_16_YV24toRGB64(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,ptrClass->bits_per_pixel); break;
-		case 26 : Convert_YV24toRGB64_SSE41(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,ptrClass->bits_per_pixel); break;
-		case 27 : Convert_YV24toRGB64_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,ptrClass->bits_per_pixel); break;
-		case 28 : Convert_16_YV24toRGB64(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,16); break;
-		case 29 : Convert_YV24toRGB64_SSE41(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,16); break;
-		case 30 : Convert_YV24toRGB64_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,16); break;
-		case 31 : Convert_RGB32toLinearRGB32(*mt_data_inf,ptrClass->lookupL_8); break;
-		case 32 : Convert_RGB64toLinearRGB64(*mt_data_inf,ptrClass->lookupL_16); break;
-		case 33 : Convert_RGB64toLinearRGBPS(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 34 : Convert_RGB32HLGtoLinearRGB32(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 35 : Convert_RGB64HLGtoLinearRGB64(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->bits_per_pixel,ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,
-					  ptrClass->AVX2_Enable,ptrClass->lookupL_16,ptrClass->lookupHLG_RGB_16,ptrClass->lookupHLG_OOTF,
-					  ptrClass->lookupHLG_inv_OOTF); break;
-		case 36 : Convert_RGB64HLGtoLinearRGBPS(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->AVX_Enable,ptrClass->lookupL_32,ptrClass->HLGColor,ptrClass->lookupHLG_OOTF,
-					  ptrClass->lookupHLG_inv_OOTF,(float)ptrClass->HLG_Lw); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 4 : Convert_Progressive_8_YV12toYV16_AVX2(*mt_data_inf); break;
-		case 11 : Convert_Progressive_16_YV12toYV16_AVX2(*mt_data_inf); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment* env) 
@@ -13577,20 +13423,8 @@ PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment*
 	dst_pitch0 = -dst_pitch;
 	dst_modulo0 = dst_pitch0 - dst->GetRowSize();
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
-
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<max_threads; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (max_threads>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,max_threads,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while requesting threadpool !");
-	}
 
 	const bool src_Y_al16=((((size_t)srcY) & 0x0F)==0) && ((abs(src_pitch_Y) & 0x0F)==0);
 	const bool src_UV_al32=((((size_t)srcU) & 0x1F)==0) && ((((size_t)srcV) & 0x1F)==0)
@@ -13685,16 +13519,7 @@ PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment*
 	
 	if (f_proc!=0)
 	{
-		if (threads_number[0]>1)
-		{
-			for(uint8_t i=0; i<threads_number[0]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[0]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -13822,16 +13647,7 @@ PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment*
 
 	if (f_proc!=0)
 	{
-		if (threads_number[1]>1)
-		{
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -14031,16 +13847,6 @@ PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment*
 		}
 	}
 
-	if (threads_number[2]>1)
-	{
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -14110,16 +13916,6 @@ PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment*
 	else f_proc=33;
 	if (HLG_Mode) f_proc+=3;
 
-	if (threads_number[2]>1)
-	{
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -14135,7 +13931,6 @@ PVideoFrame __stdcall ConvertYUVtoLinearRGB::GetFrame(int n, IScriptEnvironment*
 		}
 	}
 
-	if (max_threads>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -14156,16 +13951,6 @@ ConvertLinearRGBtoYUV::ConvertLinearRGBtoYUV(PClip _child,uint8_t _Color,uint8_t
 		HLG_Lw(_HLG_Lw),HLGColor(_HLGColor)
 {
 	UserId=0;
-
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
 
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
@@ -14188,7 +13973,6 @@ ConvertLinearRGBtoYUV::ConvertLinearRGBtoYUV(PClip _child,uint8_t _Color,uint8_t
 		|| (lookupL_20==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertLinearRGBtoYUV: Error while allocating the lookup tables!");
 	}
 
@@ -14216,7 +14000,6 @@ ConvertLinearRGBtoYUV::ConvertLinearRGBtoYUV(PClip _child,uint8_t _Color,uint8_t
 		if ((lookupHLG_RGB_16==NULL) || (lookupHLG_OOTF==NULL) || (alloc_inv_ootf && (lookupHLG_inv_OOTF==NULL)))
 		{
 			FreeData();
-			if (threads>1) poolInterface->DeAllocateAllThreads(true);
 			env->ThrowError("ConvertLinearRGBtoYUV: Error while allocating the HLG lookup tables!");
 		}
 	}
@@ -14233,7 +14016,6 @@ ConvertLinearRGBtoYUV::ConvertLinearRGBtoYUV(PClip _child,uint8_t _Color,uint8_t
 		|| (vi_RGB32==NULL) || (vi_RGB64==NULL) || (HLG_Mode && (vi_PlaneY_HLG==NULL)))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertLinearRGBtoYUV: Error while creating VideoInfo!");
 	}
 
@@ -14715,16 +14497,6 @@ ConvertLinearRGBtoYUV::ConvertLinearRGBtoYUV(PClip _child,uint8_t _Color,uint8_t
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (max_threads>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertLinearRGBtoYUV: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -14752,9 +14524,7 @@ void ConvertLinearRGBtoYUV::FreeData(void)
 
 ConvertLinearRGBtoYUV::~ConvertLinearRGBtoYUV() 
 {
-	if (max_threads>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -14770,58 +14540,7 @@ int __stdcall ConvertLinearRGBtoYUV::SetCacheHints(int cachehints,int frame_rang
 }
 
 
-void ConvertLinearRGBtoYUV::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertLinearRGBtoYUV *ptrClass=(ConvertLinearRGBtoYUV *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_LinearRGB32toRGB32(*mt_data_inf,ptrClass->lookupL_8);break;
-		case 2 : Convert_LinearRGB64toRGB64(*mt_data_inf,ptrClass->lookupL_16);break;
-		case 3 : Convert_LinearRGBPStoRGB64(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 4 : Convert_LinearRGBPStoRGB64_SSE41(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 5 : Convert_LinearRGBPStoRGB64_AVX(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 6 : Convert_LinearRGBPStoRGB64_SDR(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 7 : Convert_LinearRGBPStoRGB64_SDR_SSE41(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 8 : Convert_LinearRGBPStoRGB64_SDR_AVX(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 9 : Convert_LinearRGBPStoRGB64_PQ(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 10 : Convert_LinearRGBPStoRGB64_PQ_SSE41(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 11 : Convert_LinearRGBPStoRGB64_PQ_AVX(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 12 : Convert_LinearRGB32toRGB32HLG(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 13 : Convert_LinearRGB64toRGB64HLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->AVX2_Enable,ptrClass->lookupL_16,
-					  ptrClass->lookupHLG_RGB_16,ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF); break;
-		case 14 : Convert_LinearRGBPStoRGB64HLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->lookupL_20,ptrClass->HLGColor,
-					  ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF,(float)ptrClass->HLG_Lw,ptrClass->fastmode); break;
-		case 15 : Convert_RGB32toYV24(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 16 : Convert_RGB32toYV24_SSE2(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 17 : Convert_RGB32toYV24_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 18 : Convert_RGB64toYV24(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 19 : Convert_RGB64toYV24_SSE41(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 20 : Convert_RGB64toYV24_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 21 : Convert_Planar444toPlanar422_8(*mt_data_inf); break;
-		case 22 : Convert_Planar444toPlanar422_8_SSE2(*mt_data_inf); break;
-		case 23 : Convert_Planar444toPlanar422_8_AVX(*mt_data_inf); break;
-		case 24 : Convert_Planar444toPlanar422_16(*mt_data_inf); break;
-		case 25 : Convert_Planar444toPlanar422_16_SSE41(*mt_data_inf); break;
-		case 26 : Convert_Planar444toPlanar422_16_AVX(*mt_data_inf); break;
-		case 27 : Convert_Planar422toPlanar420_8(*mt_data_inf); break;
-		case 28 : Convert_Planar422toPlanar420_8_SSE2(*mt_data_inf); break;
-		case 29 : Convert_Planar422toPlanar420_8_AVX(*mt_data_inf); break;
-		case 31 : Convert_Planar422toPlanar420_16(*mt_data_inf); break;
-		case 32 : Convert_Planar422toPlanar420_16_SSE2(*mt_data_inf); break;
-		case 33 : Convert_Planar422toPlanar420_16_AVX(*mt_data_inf); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 30 : Convert_Planar422toPlanar420_8_AVX2(*mt_data_inf); break;
-		case 34 : Convert_Planar422toPlanar420_16_AVX2(*mt_data_inf); break;
-#endif
-		default : ;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment* env) 
@@ -14977,20 +14696,9 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment*
 		tmp4_modulo = tmp4_pitch - tmp4->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<max_threads; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (max_threads>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,max_threads,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while requesting threadpool !");
-	}
 	
 	const bool src_RGBP_al32=((((size_t)srcRw) & 0x1F)==0) && ((((size_t)srcGw) & 0x1F)==0)
 		&& ((((size_t)srcBw) & 0x1F)==0) && ((abs(src_pitch_R) & 0x1F)==0)
@@ -15115,16 +14823,7 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment*
 		if (HLG_Mode) f_proc+=11;
 	}
 	
-	if (threads_number[0]>1)
-	{
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -15241,16 +14940,6 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment*
 		}
 	}
 
-	if (threads_number[0]>1)
-	{
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -15328,16 +15017,7 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment*
 
 	if (f_proc!=0)
 	{
-		if (threads_number[1]>1)
-		{
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -15408,16 +15088,7 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment*
 
 	if (f_proc!=0)
 	{
-		if (threads_number[2]>1)
-		{
-			for(uint8_t i=0; i<threads_number[2]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[2]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -15436,7 +15107,6 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV::GetFrame(int n, IScriptEnvironment*
 		}
 	}
 
-	if (max_threads>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -15458,16 +15128,6 @@ ConvertYUVtoXYZ::ConvertYUVtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		Bx(_Bx),By(_By),Wx(_Wx),Wy(_Wy),HLG_Lb(_HLG_Lb),HLG_Lw(_HLG_Lw),HLGColor(_HLGColor),Crosstalk(_Crosstalk)
 {
 	UserId=0;
-
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
 
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
@@ -15587,7 +15247,6 @@ ConvertYUVtoXYZ::ConvertYUVtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		if ((lookupHLG_RGB_16==NULL) || (lookupHLG_OOTF==NULL) || (alloc_inv_ootf && (lookupHLG_inv_OOTF==NULL)))
 		{
 			FreeData();
-			if (threads>1) poolInterface->DeAllocateAllThreads(true);
 			env->ThrowError("ConvertYUVtoXYZ: Error while allocating the HLG lookup tables!");
 		}
 	}
@@ -15602,7 +15261,6 @@ ConvertYUVtoXYZ::ConvertYUVtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 	if ((vi_original==NULL) || (vi_422==NULL) || (vi_444==NULL) || (vi_RGB64==NULL) || (HLG_Mode && (vi_PlaneY_HLG==NULL)))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertYUVtoXYZ: Error while creating VideoInfo!");
 	}
 
@@ -15610,7 +15268,6 @@ ConvertYUVtoXYZ::ConvertYUVtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupXYZ_8,lookupXYZ_16,Coeff_XYZ,Coeff_XYZ_asm,true))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertYUVtoXYZ: Error while computing XYZ matrix!");
 	}
 
@@ -16508,16 +16165,6 @@ ConvertYUVtoXYZ::ConvertYUVtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupCrosstalk_16[i+8*65536]=(int32_t)round(256.0*65535.0*x*Coeff_Crosstalk[8]);
 	}
 
-	if (max_threads>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertYUVtoXYZ: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -16552,9 +16199,7 @@ void ConvertYUVtoXYZ::FreeData(void)
 
 ConvertYUVtoXYZ::~ConvertYUVtoXYZ() 
 {
-	if (max_threads>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -16570,79 +16215,7 @@ int __stdcall ConvertYUVtoXYZ::SetCacheHints(int cachehints,int frame_range)
 }
 
 
-void ConvertYUVtoXYZ::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertYUVtoXYZ *ptrClass=(ConvertYUVtoXYZ *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_Progressive_8_YV12toYV16(*mt_data_inf,ptrClass->lookup_Upscale8); break;
-		case 2 : Convert_Progressive_8_YV12toYV16_SSE2(*mt_data_inf); break;
-		case 3 : Convert_Progressive_8_YV12toYV16_AVX(*mt_data_inf); break;
-		case 5 : Convert_Progressive_8to16_YV12toYV16(*mt_data_inf,ptrClass->lookup_Upscale16,ptrClass->lookup_8to16); break;
-		case 6 : Convert_Progressive_8to16_YV12toYV16_SSE2(*mt_data_inf,ptrClass->lookup_Upscale16,ptrClass->lookup_8to16); break;
-		case 7 : Convert_Progressive_8to16_YV12toYV16_AVX(*mt_data_inf,ptrClass->lookup_Upscale16,ptrClass->lookup_8to16); break;
-		case 8 : Convert_Progressive_16_YV12toYV16(*mt_data_inf,ptrClass->lookup_Upscale16); break;
-		case 9 : Convert_Progressive_16_YV12toYV16_SSE2(*mt_data_inf); break;
-		case 10 : Convert_Progressive_16_YV12toYV16_AVX(*mt_data_inf); break;
-		case 12 : Convert_8_YV16toYV24(*mt_data_inf); break;
-		case 13 : Convert_8_YV16toYV24_SSE2(*mt_data_inf); break;
-		case 14 : Convert_8_YV16toYV24_AVX(*mt_data_inf); break;
-		case 15 : Convert_8to16_YV16toYV24(*mt_data_inf,ptrClass->lookup_8to16); break;
-		case 16 : Convert_8to16_YV16toYV24_SSE2(*mt_data_inf,ptrClass->lookup_8to16); break;
-		case 17 : Convert_8to16_YV16toYV24_AVX(*mt_data_inf,ptrClass->lookup_8to16); break;
-		case 18 : Convert_16_YV16toYV24(*mt_data_inf); break;
-		case 19 : Convert_16_YV16toYV24_SSE2(*mt_data_inf); break;
-		case 20 : Convert_16_YV16toYV24_AVX(*mt_data_inf); break;
-		case 21 : Convert_YV24toRGB32(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 22 : Convert_YV24toRGB32_SSE2(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 23 : Convert_YV24toRGB32_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 24 : Convert_8_YV24toRGB64(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 25 : Convert_16_YV24toRGB64(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,ptrClass->bits_per_pixel); break;
-		case 26 : Convert_YV24toRGB64_SSE41(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,ptrClass->bits_per_pixel); break;
-		case 27 : Convert_YV24toRGB64_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,ptrClass->bits_per_pixel); break;
-		case 28 : Convert_16_YV24toRGB64(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,16); break;
-		case 29 : Convert_YV24toRGB64_SSE41(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,16); break;
-		case 30 : Convert_YV24toRGB64_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16,16); break;
-		case 31 : Convert_RGB32toLinearRGB32(*mt_data_inf,ptrClass->lookupL_8); break;
-		case 32 : Convert_RGB64toLinearRGB64(*mt_data_inf,ptrClass->lookupL_16); break;
-		case 33 : Convert_RGB64toLinearRGBPS(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 34 : Convert_RGB32toXYZ(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 35 : Convert_RGB32toXYZ_SSE2(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 36 : Convert_RGB32toXYZ_AVX(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 37 : Convert_RGB64toXYZ(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 38 : Convert_RGB64toXYZ_SSE41(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 39 : Convert_RGB64toXYZ_AVX(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 40 : Convert_RGBPStoXYZ(*mt_data_inf,ptrClass->Coeff_XYZ); break;
-		case 41 : Convert_RGBPStoXYZ_SSE2(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 42 : Convert_RGBPStoXYZ_AVX(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 43 : Convert_RGB32HLGtoLinearRGB32(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 44 : Convert_RGB64HLGtoLinearRGB64(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->bits_per_pixel,ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,
-					  ptrClass->AVX2_Enable,ptrClass->lookupL_16,ptrClass->lookupHLG_RGB_16,ptrClass->lookupHLG_OOTF,
-					  ptrClass->lookupHLG_inv_OOTF); break;
-		case 45 : Convert_RGB64HLGtoLinearRGBPS(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->AVX_Enable,ptrClass->lookupL_32,ptrClass->HLGColor,ptrClass->lookupHLG_OOTF,
-					  ptrClass->lookupHLG_inv_OOTF,(float)ptrClass->HLG_Lw); break;
-		case 46 : Convert_RGB32toXYZ(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 47 : Convert_RGB32toXYZ_SSE2(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 48 : Convert_RGB32toXYZ_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 49 : Convert_RGB64toXYZ(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 50 : Convert_RGB64toXYZ_SSE41(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 51 : Convert_RGB64toXYZ_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 52 : Convert_RGBPStoXYZ(*mt_data_inf,ptrClass->Coeff_Crosstalk); break;
-		case 53 : Convert_RGBPStoXYZ_SSE2(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-		case 54 : Convert_RGBPStoXYZ_AVX(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 4 : Convert_Progressive_8_YV12toYV16_AVX2(*mt_data_inf); break;
-		case 11 : Convert_Progressive_16_YV12toYV16_AVX2(*mt_data_inf); break;
-#endif
-		default : ;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env) 
@@ -16787,20 +16360,8 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 	dst_pitch0 = -dst_pitch;
 	dst_modulo0 = dst_pitch0 - dst->GetRowSize();
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
-
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<max_threads; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (max_threads>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,max_threads,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertYUVtoXYZ: Error with the TheadPool while requesting threadpool !");
-	}
 
 	const bool src_Y_al16=((((size_t)srcY) & 0x0F)==0) && ((abs(src_pitch_Y) & 0x0F)==0);
 	const bool src_UV_al32=((((size_t)srcU) & 0x1F)==0) && ((((size_t)srcV) & 0x1F)==0)
@@ -16895,16 +16456,7 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 	
 	if (f_proc!=0)
 	{
-		if (threads_number[0]>1)
-		{
-			for(uint8_t i=0; i<threads_number[0]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[0]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -17032,16 +16584,7 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 
 	if (f_proc!=0)
 	{
-		if (threads_number[1]>1)
-		{
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -17241,16 +16784,6 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number[2]>1)
-	{
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -17320,16 +16853,6 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 	else f_proc=33;
 	if (HLG_Mode) f_proc+=12;
 
-	if (threads_number[2]>1)
-	{
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -17417,16 +16940,7 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 	// Apply Crosstalk if there is
 	if (Crosstalk!=0.0)
 	{
-		if (threads_number[2]>1)
-		{
-			for(uint8_t i=0; i<threads_number[2]; i++)
-				MT_ThreadGF[i].f_process=f_proc+12;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[2]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc+12)
 			{
@@ -17444,16 +16958,6 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number[2]>1)
-	{
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[2]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -17470,7 +16974,6 @@ PVideoFrame __stdcall ConvertYUVtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (max_threads>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -17494,16 +16997,6 @@ ConvertXYZtoYUV::ConvertXYZtoYUV(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		HLG_Lb(_HLG_Lb),HLG_Lw(_HLG_Lw),HLGColor(_HLGColor),Crosstalk(_Crosstalk)
 {
 	UserId=0;
-
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
 
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
@@ -17533,7 +17026,6 @@ ConvertXYZtoYUV::ConvertXYZtoYUV(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		|| (lookupCrosstalk_8==NULL) || (lookupCrosstalk_16==NULL) || (Coeff_Crosstalk_asm==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZtoYUV: Error while allocating the lookup tables!");
 	}
 
@@ -17561,7 +17053,6 @@ ConvertXYZtoYUV::ConvertXYZtoYUV(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		if ((lookupHLG_RGB_16==NULL) || (lookupHLG_OOTF==NULL) || (alloc_inv_ootf && (lookupHLG_inv_OOTF==NULL)))
 		{
 			FreeData();
-			if (threads>1) poolInterface->DeAllocateAllThreads(true);
 			env->ThrowError("ConvertXYZtoYUV: Error while allocating the HLG lookup tables!");
 		}
 	}
@@ -17578,7 +17069,6 @@ ConvertXYZtoYUV::ConvertXYZtoYUV(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		|| (vi_RGB32==NULL) || (vi_RGB64==NULL) || (HLG_Mode && (vi_PlaneY_HLG==NULL)))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZtoYUV: Error while creating VideoInfo!");
 	}
 
@@ -17586,7 +17076,6 @@ ConvertXYZtoYUV::ConvertXYZtoYUV(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupXYZ_8,lookupXYZ_16,Coeff_XYZ,Coeff_XYZ_asm,false))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZtoYUV: Error while computing XYZ matrix!");
 	}
 
@@ -18120,16 +17609,6 @@ ConvertXYZtoYUV::ConvertXYZtoYUV(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupCrosstalk_16[i+8*65536]=(int32_t)round(256.0*65535.0*x*Coeff_Crosstalk[8]);
 	}
 
-	if (max_threads>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZtoYUV: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -18163,9 +17642,7 @@ void ConvertXYZtoYUV::FreeData(void)
 
 ConvertXYZtoYUV::~ConvertXYZtoYUV() 
 {
-	if (max_threads>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -18181,76 +17658,7 @@ int __stdcall ConvertXYZtoYUV::SetCacheHints(int cachehints,int frame_range)
 }
 
 
-void ConvertXYZtoYUV::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZtoYUV *ptrClass=(ConvertXYZtoYUV *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_LinearRGB32toRGB32(*mt_data_inf,ptrClass->lookupL_8);break;
-		case 2 : Convert_LinearRGB64toRGB64(*mt_data_inf,ptrClass->lookupL_16);break;
-		case 3 : Convert_LinearRGBPStoRGB64(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 4 : Convert_LinearRGBPStoRGB64_SSE41(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 5 : Convert_LinearRGBPStoRGB64_AVX(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 6 : Convert_LinearRGBPStoRGB64_SDR(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 7 : Convert_LinearRGBPStoRGB64_SDR_SSE41(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 8 : Convert_LinearRGBPStoRGB64_SDR_AVX(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 9 : Convert_LinearRGBPStoRGB64_PQ(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 10 : Convert_LinearRGBPStoRGB64_PQ_SSE41(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 11 : Convert_LinearRGBPStoRGB64_PQ_AVX(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 12 : Convert_LinearRGB32toRGB32HLG(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 13 : Convert_LinearRGB64toRGB64HLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->AVX2_Enable,ptrClass->lookupL_16,
-					  ptrClass->lookupHLG_RGB_16,ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF); break;
-		case 14 : Convert_LinearRGBPStoRGB64HLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->lookupL_20,ptrClass->HLGColor,
-					  ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF,(float)ptrClass->HLG_Lw,ptrClass->fastmode); break;
-		case 15 : Convert_RGB32toYV24(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 16 : Convert_RGB32toYV24_SSE2(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 17 : Convert_RGB32toYV24_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_8); break;
-		case 18 : Convert_RGB64toYV24(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 19 : Convert_RGB64toYV24_SSE41(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 20 : Convert_RGB64toYV24_AVX(*mt_data_inf,ptrClass->dl,ptrClass->lookupRGB_16); break;
-		case 21 : Convert_Planar444toPlanar422_8(*mt_data_inf); break;
-		case 22 : Convert_Planar444toPlanar422_8_SSE2(*mt_data_inf); break;
-		case 23 : Convert_Planar444toPlanar422_8_AVX(*mt_data_inf); break;
-		case 24 : Convert_Planar444toPlanar422_16(*mt_data_inf); break;
-		case 25 : Convert_Planar444toPlanar422_16_SSE41(*mt_data_inf); break;
-		case 26 : Convert_Planar444toPlanar422_16_AVX(*mt_data_inf); break;
-		case 27 : Convert_Planar422toPlanar420_8(*mt_data_inf); break;
-		case 28 : Convert_Planar422toPlanar420_8_SSE2(*mt_data_inf); break;
-		case 29 : Convert_Planar422toPlanar420_8_AVX(*mt_data_inf); break;
-		case 31 : Convert_Planar422toPlanar420_16(*mt_data_inf); break;
-		case 32 : Convert_Planar422toPlanar420_16_SSE2(*mt_data_inf); break;
-		case 33 : Convert_Planar422toPlanar420_16_AVX(*mt_data_inf); break;
-		case 35 : Convert_XYZtoRGB32(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 36 : Convert_XYZtoRGB32_SSE2(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 37 : Convert_XYZtoRGB32_AVX(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 38 : Convert_XYZtoRGB64(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 39 : Convert_XYZtoRGB64_SSE41(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 40 : Convert_XYZtoRGB64_AVX(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 41 : Convert_XYZtoRGBPS(*mt_data_inf,ptrClass->Coeff_XYZ); break;
-		case 42 : Convert_XYZtoRGBPS_SSE2(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 43 : Convert_XYZtoRGBPS_AVX(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 44 : Convert_XYZtoRGB32(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 45 : Convert_XYZtoRGB32_SSE2(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 46 : Convert_XYZtoRGB32_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 47 : Convert_XYZtoRGB64(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 48 : Convert_XYZtoRGB64_SSE41(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 49 : Convert_XYZtoRGB64_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 50 : Convert_XYZtoRGBPS(*mt_data_inf,ptrClass->Coeff_Crosstalk); break;
-		case 51 : Convert_XYZtoRGBPS_SSE2(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-		case 52 : Convert_XYZtoRGBPS_AVX(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 30 : Convert_Planar422toPlanar420_8_AVX2(*mt_data_inf); break;
-		case 34 : Convert_Planar422toPlanar420_16_AVX2(*mt_data_inf); break;
-#endif
-		default : ;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env) 
@@ -18406,20 +17814,9 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 		tmp4_modulo = tmp4_pitch - tmp4->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<max_threads; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (max_threads>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,max_threads,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZtoYUV: Error with the TheadPool while requesting threadpool !");
-	}
 	
 	const bool src_al16=((((size_t)srcw) & 0x0F)==0) && ((abs(src_pitch) & 0x0F)==0);
 
@@ -18532,16 +17929,6 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number[0]>1)
-	{
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -18561,16 +17948,7 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 	//Reverse Crosstalk if there is
 	if (Crosstalk!=0.0)
 	{
-		if (threads_number[0]>1)
-		{
-			for(uint8_t i=0; i<threads_number[0]; i++)
-				MT_ThreadGF[i].f_process=f_proc+9;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[0]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc+9)
 			{
@@ -18671,16 +18049,7 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 		if (HLG_Mode) f_proc+=11;
 	}
 	
-	if (threads_number[0]>1)
-	{
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -18797,16 +18166,6 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number[0]>1)
-	{
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number[0]; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -18884,16 +18243,7 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 
 	if (f_proc!=0)
 	{
-		if (threads_number[1]>1)
-		{
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[1]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -18964,16 +18314,7 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 
 	if (f_proc!=0)
 	{
-		if (threads_number[2]>1)
-		{
-			for(uint8_t i=0; i<threads_number[2]; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number[2]; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -18992,7 +18333,6 @@ PVideoFrame __stdcall ConvertXYZtoYUV::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (max_threads>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -19015,16 +18355,6 @@ ConvertRGBtoXYZ::ConvertRGBtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		Crosstalk(_Crosstalk)
 {
 	UserId=0;
-
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
 
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
@@ -19055,7 +18385,6 @@ ConvertRGBtoXYZ::ConvertRGBtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		|| (lookupCrosstalk_8==NULL) || (lookupCrosstalk_16==NULL) || (Coeff_Crosstalk_asm==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertRGBtoXYZ: Error while allocating the lookup tables!");
 	}
 
@@ -19141,7 +18470,6 @@ ConvertRGBtoXYZ::ConvertRGBtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		if ((lookupHLG_RGB_16==NULL) || (lookupHLG_OOTF==NULL) || (alloc_inv_ootf && (lookupHLG_inv_OOTF==NULL)))
 		{
 			FreeData();
-			if (threads>1) poolInterface->DeAllocateAllThreads(true);
 			env->ThrowError("ConvertRGBtoXYZ: Error while allocating the HLG lookup tables!");
 		}
 	}
@@ -19151,7 +18479,6 @@ ConvertRGBtoXYZ::ConvertRGBtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 	if (HLG_Mode && (vi_PlaneY_HLG==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertRGBtoXYZ: Error while creating VideoInfo!");
 	}
 
@@ -19159,7 +18486,6 @@ ConvertRGBtoXYZ::ConvertRGBtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupXYZ_8,lookupXYZ_16,Coeff_XYZ,Coeff_XYZ_asm,true))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertRGBtoXYZ: Error while computing XYZ matrix!");
 	}
 
@@ -20196,16 +19522,6 @@ ConvertRGBtoXYZ::ConvertRGBtoXYZ(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupCrosstalk_16[i+8*65536]=(int32_t)round(256.0*65535.0*x*Coeff_Crosstalk[8]);
 	}
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertRGBtoXYZ: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -20234,9 +19550,7 @@ void ConvertRGBtoXYZ::FreeData(void)
 
 ConvertRGBtoXYZ::~ConvertRGBtoXYZ() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -20252,64 +19566,7 @@ int __stdcall ConvertRGBtoXYZ::SetCacheHints(int cachehints,int frame_range)
 }
 
 
-void ConvertRGBtoXYZ::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertRGBtoXYZ *ptrClass=(ConvertRGBtoXYZ *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_RGB32toLinearRGB32(*mt_data_inf,ptrClass->lookupL_8); break;
-		case 2 : Convert_RGB32toLinearRGB64(*mt_data_inf,ptrClass->lookupL_8to16); break;
-		case 3 : Convert_RGB32toLinearRGBPS(*mt_data_inf,ptrClass->lookupL_8to32); break;
-		case 4 : Convert_RGB64toLinearRGB64(*mt_data_inf,ptrClass->lookupL_16); break;
-		case 5 : Convert_RGB64toLinearRGBPS(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 6 : Convert_RGB32toXYZ(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 7 : Convert_RGB32toXYZ_SSE2(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 8 : Convert_RGB32toXYZ_AVX(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 9 : Convert_RGB64toXYZ(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 10 : Convert_RGB64toXYZ_SSE41(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 11 : Convert_RGB64toXYZ_AVX(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 12 : Convert_RGBPStoXYZ(*mt_data_inf,ptrClass->Coeff_XYZ); break;
-		case 13 : Convert_RGBPStoXYZ_SSE2(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 14 : Convert_RGBPStoXYZ_AVX(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 16 : Convert_RGBPStoLinearRGBPS_AVX(*mt_data_inf,ptrClass->lookupL_20); break;
-		case 17 : Convert_RGBPStoLinearRGBPS_SSE41(*mt_data_inf,ptrClass->lookupL_20); break;
-		case 18 : Convert_RGBPStoLinearRGBPS_SSE2(*mt_data_inf,ptrClass->lookupL_20); break;
-		case 19 : Convert_RGBPStoLinearRGBPS(*mt_data_inf,ptrClass->lookupL_20); break;
-		case 20 : Convert_RGBPStoLinearRGBPS_SDR(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 21 : Convert_RGB32HLGtoLinearRGB32(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 22 : Convert_RGBPStoLinearRGBPS_PQ(*mt_data_inf,ptrClass->EOTF,ptrClass->OOTF); break;
-		case 23 : Convert_RGB32HLGtoLinearRGB64b(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 24 : Convert_RGB32HLGtoLinearRGBPS(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 25 : Convert_RGB64HLGtoLinearRGB64(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->bits_per_pixel,ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,
-					  ptrClass->AVX2_Enable,ptrClass->lookupL_16,ptrClass->lookupHLG_RGB_16,ptrClass->lookupHLG_OOTF,
-					  ptrClass->lookupHLG_inv_OOTF); break;
-		case 26 : Convert_RGB64HLGtoLinearRGBPS(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->AVX_Enable,ptrClass->lookupL_32,ptrClass->HLGColor,
-					  ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF,(float)ptrClass->HLG_Lw); break;
-		case 27 : Convert_RGBPSHLGtoLinearRGBPS(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->AVX2_Enable,
-					  ptrClass->lookupL_20,ptrClass->HLGColor,ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF,
-					  (float)ptrClass->HLG_Lw,ptrClass->fastmode); break;
-		case 28 : Convert_RGB32toXYZ(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 29 : Convert_RGB32toXYZ_SSE2(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 30 : Convert_RGB32toXYZ_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 31 : Convert_RGB64toXYZ(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 32 : Convert_RGB64toXYZ_SSE41(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 33 : Convert_RGB64toXYZ_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 34 : Convert_RGBPStoXYZ(*mt_data_inf,ptrClass->Coeff_Crosstalk); break;
-		case 35 : Convert_RGBPStoXYZ_SSE2(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-		case 36 : Convert_RGBPStoXYZ_AVX(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 15 : Convert_RGBPStoLinearRGBPS_AVX2(*mt_data_inf,ptrClass->lookupL_20); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertRGBtoXYZ::GetFrame(int n, IScriptEnvironment* env) 
@@ -20397,20 +19654,8 @@ PVideoFrame __stdcall ConvertRGBtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 		tmp4_modulo = tmp4_pitch - tmp4->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
-
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertRGBtoXYZ: Error with the TheadPool while requesting threadpool !");
-	}
 
 	const bool src_RGBP_al32=((((size_t)srcRr) & 0x1F)==0)
 		&& ((((size_t)srcGr) & 0x1F)==0) && ((((size_t)srcBr) & 0x1F)==0)
@@ -20582,16 +19827,7 @@ PVideoFrame __stdcall ConvertRGBtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 			break;
 		default : f_proc=0; break;
 	}
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -20696,16 +19932,7 @@ PVideoFrame __stdcall ConvertRGBtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 	// Apply Crosstalk if there is
 	if (Crosstalk!=0.0)
 	{
-		if (threads_number>1)
-		{
-			for(uint8_t i=0; i<threads_number; i++)
-				MT_ThreadGF[i].f_process=f_proc+22;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc+22)
 			{
@@ -20723,16 +19950,6 @@ PVideoFrame __stdcall ConvertRGBtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -20749,7 +19966,6 @@ PVideoFrame __stdcall ConvertRGBtoXYZ::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -20774,16 +19990,6 @@ ConvertXYZtoRGB::ConvertXYZtoRGB(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		HLG_Lb(_HLG_Lb),HLG_Lw(_HLG_Lw),HLGColor(_HLGColor),Crosstalk(_Crosstalk)
 {
 	UserId=0;
-
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
 
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
@@ -20812,7 +20018,6 @@ ConvertXYZtoRGB::ConvertXYZtoRGB(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		|| (lookupCrosstalk_16==NULL) || (Coeff_Crosstalk_asm==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZtoRGB: Error while allocating the lookup tables!");
 	}
 
@@ -20840,7 +20045,6 @@ ConvertXYZtoRGB::ConvertXYZtoRGB(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		if ((lookupHLG_RGB_16==NULL) || (lookupHLG_OOTF==NULL) || (alloc_inv_ootf && (lookupHLG_inv_OOTF==NULL)))
 		{
 			FreeData();
-			if (threads>1) poolInterface->DeAllocateAllThreads(true);
 			env->ThrowError("ConvertXYZtoRGB: Error while allocating the HLG lookup tables!");
 		}
 	}
@@ -20850,7 +20054,6 @@ ConvertXYZtoRGB::ConvertXYZtoRGB(PClip _child,uint8_t _Color,uint8_t _OutputMode
 	if (HLG_Mode && (vi_PlaneY_HLG==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZtoRGB: Error while creating VideoInfo!");
 	}
 
@@ -20858,7 +20061,6 @@ ConvertXYZtoRGB::ConvertXYZtoRGB(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupXYZ_8,lookupXYZ_16,Coeff_XYZ,Coeff_XYZ_asm,false))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZtoRGB: Error while computing XYZ matrix!");
 	}
 
@@ -21352,16 +20554,6 @@ ConvertXYZtoRGB::ConvertXYZtoRGB(PClip _child,uint8_t _Color,uint8_t _OutputMode
 		lookupCrosstalk_16[i+8*65536]=(int32_t)round(256.0*65535.0*x*Coeff_Crosstalk[8]);
 	}
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZtoRGB: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -21388,9 +20580,7 @@ void ConvertXYZtoRGB::FreeData(void)
 
 ConvertXYZtoRGB::~ConvertXYZtoRGB() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -21406,68 +20596,7 @@ int __stdcall ConvertXYZtoRGB::SetCacheHints(int cachehints,int frame_range)
 }
 
 
-void ConvertXYZtoRGB::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZtoRGB *ptrClass=(ConvertXYZtoRGB *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZtoRGB32(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 2 : Convert_XYZtoRGB32_SSE2(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 3 : Convert_XYZtoRGB32_AVX(*mt_data_inf,ptrClass->lookupXYZ_8); break;
-		case 4 : Convert_XYZtoRGB64(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 5 : Convert_XYZtoRGB64_SSE41(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 6 : Convert_XYZtoRGB64_AVX(*mt_data_inf,ptrClass->lookupXYZ_16); break;
-		case 7 : Convert_XYZtoRGBPS(*mt_data_inf,ptrClass->Coeff_XYZ); break;
-		case 8 : Convert_XYZtoRGBPS_SSE2(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 9 : Convert_XYZtoRGBPS_AVX(*mt_data_inf,ptrClass->Coeff_XYZ_asm); break;
-		case 10 : Convert_LinearRGB32toRGB32(*mt_data_inf,ptrClass->lookupL_8);break;
-		case 11 : Convert_LinearRGB64toRGB64(*mt_data_inf,ptrClass->lookupL_16);break;
-		case 12 : Convert_LinearRGBPStoRGB64(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 13 : Convert_LinearRGBPStoRGB64_SSE41(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 14 : Convert_LinearRGBPStoRGB64_AVX(*mt_data_inf,ptrClass->lookupL_20);break;
-		case 15 : Convert_LinearRGBPStoRGB64_SDR(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 16 : Convert_LinearRGBPStoRGB64_SDR_SSE41(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 17 : Convert_LinearRGBPStoRGB64_SDR_AVX(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 18 : Convert_LinearRGBPStoRGB64_PQ(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 19 : Convert_LinearRGBPStoRGB64_PQ_SSE41(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 20 : Convert_LinearRGBPStoRGB64_PQ_AVX(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 21 : Convert_LinearRGBPStoRGB64HLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->lookupL_20,
-					  ptrClass->HLGColor,ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF,
-					  (float)ptrClass->HLG_Lw,ptrClass->fastmode); break;
-		case 22 : Convert_LinearRGBPStoRGBPSHLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE2_Enable,ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->AVX2_Enable,
-					  ptrClass->lookupL_32,ptrClass->HLGColor,ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF,
-					  (float)ptrClass->HLG_Lw,ptrClass->fastmode); break;
-		case 23 : Convert_LinearRGB32toRGB32HLG(*mt_data_inf,ptrClass->lookupHLG_OOTF); break;
-		case 25 : Convert_LinearRGBPStoRGBPS_AVX(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 26 : Convert_LinearRGBPStoRGBPS_SSE41(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 27 : Convert_LinearRGBPStoRGBPS_SSE2(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 28 : Convert_LinearRGBPStoRGBPS(*mt_data_inf,ptrClass->lookupL_32); break;
-		case 29 : Convert_LinearRGB64toRGB64HLG(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF,(ptrClass->HDRMode==1),
-					  ptrClass->SSE41_Enable,ptrClass->AVX_Enable,ptrClass->AVX2_Enable,ptrClass->lookupL_16,
-					  ptrClass->lookupHLG_RGB_16,ptrClass->lookupHLG_OOTF,ptrClass->lookupHLG_inv_OOTF); break;
-		case 30 : Convert_LinearRGBPStoRGBPS_PQ(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 31 : Convert_LinearRGBPStoRGBPS_SDR(*mt_data_inf,ptrClass->OOTF,ptrClass->EOTF); break;
-		case 32 : Convert_XYZtoRGB32(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 33 : Convert_XYZtoRGB32_SSE2(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 34 : Convert_XYZtoRGB32_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_8); break;
-		case 35 : Convert_XYZtoRGB64(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 36 : Convert_XYZtoRGB64_SSE41(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 37 : Convert_XYZtoRGB64_AVX(*mt_data_inf,ptrClass->lookupCrosstalk_16); break;
-		case 38 : Convert_XYZtoRGBPS(*mt_data_inf,ptrClass->Coeff_Crosstalk); break;
-		case 39 : Convert_XYZtoRGBPS_SSE2(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-		case 40 : Convert_XYZtoRGBPS_AVX(*mt_data_inf,ptrClass->Coeff_Crosstalk_asm); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 24 : Convert_LinearRGBPStoRGBPS_AVX2(*mt_data_inf,ptrClass->lookupL_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZtoRGB::GetFrame(int n, IScriptEnvironment* env) 
@@ -21577,21 +20706,10 @@ PVideoFrame __stdcall ConvertXYZtoRGB::GetFrame(int n, IScriptEnvironment* env)
 		tmp4_modulo = tmp4_pitch - tmp4->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZtoRGB: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_al16=((((size_t)srcw) & 0x0F)==0) && ((abs(src_pitch) & 0x0F)==0);
 
 	const bool src_RGBP_al32=((((size_t)srcRw) & 0x1F)==0) && ((((size_t)srcGw) & 0x1F)==0)
@@ -21715,16 +20833,6 @@ PVideoFrame __stdcall ConvertXYZtoRGB::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -21760,16 +20868,6 @@ PVideoFrame __stdcall ConvertXYZtoRGB::GetFrame(int n, IScriptEnvironment* env)
 			}
 		}
 
-		if (threads_number>1)
-		{
-			for(uint8_t i=0; i<threads_number; i++)
-				MT_ThreadGF[i].f_process=f_proc+31;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-			for(uint8_t i=0; i<threads_number; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc+31)
 			{
@@ -21948,16 +21046,7 @@ PVideoFrame __stdcall ConvertXYZtoRGB::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 	
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -21992,7 +21081,6 @@ PVideoFrame __stdcall ConvertXYZtoRGB::GetFrame(int n, IScriptEnvironment* env)
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -22012,16 +21100,6 @@ ConvertXYZ_Scale_HDRtoSDR::ConvertXYZ_Scale_HDRtoSDR(PClip _child,float _Coeff_X
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -22035,7 +21113,6 @@ ConvertXYZ_Scale_HDRtoSDR::ConvertXYZ_Scale_HDRtoSDR(PClip _child,float _Coeff_X
 	if ((lookupX_16==NULL) || (lookupY_16==NULL) || (lookupZ_16==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
@@ -22063,16 +21140,6 @@ ConvertXYZ_Scale_HDRtoSDR::ConvertXYZ_Scale_HDRtoSDR(PClip _child,float _Coeff_X
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -22088,9 +21155,7 @@ void ConvertXYZ_Scale_HDRtoSDR::FreeData(void)
 
 ConvertXYZ_Scale_HDRtoSDR::~ConvertXYZ_Scale_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -22106,26 +21171,7 @@ int __stdcall ConvertXYZ_Scale_HDRtoSDR::SetCacheHints(int cachehints,int frame_
 }
 
 
-void ConvertXYZ_Scale_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZ_Scale_HDRtoSDR *ptrClass=(ConvertXYZ_Scale_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupX_16,ptrClass->lookupY_16,
-					 ptrClass->lookupZ_16); break;
-		case 2 : Convert_XYZ_Scale_HDRtoSDR_32(*mt_data_inf,ptrClass->Coeff_X,ptrClass->Coeff_Y,
-					 ptrClass->Coeff_Z); break;
-		case 3 : Convert_XYZ_Scale_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->Coeff_X,ptrClass->Coeff_Y,
-					 ptrClass->Coeff_Z); break;
-		case 4 : Convert_XYZ_Scale_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->Coeff_X,ptrClass->Coeff_Y,
-					 ptrClass->Coeff_Z); break;
-		default : ;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZ_Scale_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -22174,21 +21220,10 @@ PVideoFrame __stdcall ConvertXYZ_Scale_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_RGBP_al32=((((size_t)srcRr) & 0x1F)==0) && ((((size_t)srcGr) & 0x1F)==0)
 		&& ((((size_t)srcBr) & 0x1F)==0) && ((abs(src_pitch_R) & 0x1F)==0)
 		&& ((abs(src_pitch_G) & 0x1F)==0) && ((abs(src_pitch_B) & 0x1F)==0);
@@ -22255,16 +21290,6 @@ PVideoFrame __stdcall ConvertXYZ_Scale_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -22276,7 +21301,6 @@ PVideoFrame __stdcall ConvertXYZ_Scale_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -22296,16 +21320,6 @@ ConvertXYZ_Scale_SDRtoHDR::ConvertXYZ_Scale_SDRtoHDR(PClip _child,float _Coeff_X
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -22323,7 +21337,6 @@ ConvertXYZ_Scale_SDRtoHDR::ConvertXYZ_Scale_SDRtoHDR(PClip _child,float _Coeff_X
 	if ((lookupX_16==NULL) || (lookupY_16==NULL) || (lookupZ_16==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Error while allocating the lookup tables!");
 	}
 
@@ -22351,16 +21364,6 @@ ConvertXYZ_Scale_SDRtoHDR::ConvertXYZ_Scale_SDRtoHDR(PClip _child,float _Coeff_X
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -22376,9 +21379,7 @@ void ConvertXYZ_Scale_SDRtoHDR::FreeData(void)
 
 ConvertXYZ_Scale_SDRtoHDR::~ConvertXYZ_Scale_SDRtoHDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -22394,26 +21395,7 @@ int __stdcall ConvertXYZ_Scale_SDRtoHDR::SetCacheHints(int cachehints,int frame_
 }
 
 
-void ConvertXYZ_Scale_SDRtoHDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZ_Scale_SDRtoHDR *ptrClass=(ConvertXYZ_Scale_SDRtoHDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_SDRtoHDR_16(*mt_data_inf,ptrClass->lookupX_16,ptrClass->lookupY_16,
-					 ptrClass->lookupZ_16); break;
-		case 2 : Convert_XYZ_Scale_SDRtoHDR_32(*mt_data_inf,ptrClass->Coeff_X,ptrClass->Coeff_Y,
-					 ptrClass->Coeff_Z); break;
-		case 3 : Convert_XYZ_Scale_SDRtoHDR_32_SSE2(*mt_data_inf,ptrClass->Coeff_X,ptrClass->Coeff_Y,
-					 ptrClass->Coeff_Z); break;
-		case 4 : Convert_XYZ_Scale_SDRtoHDR_32_AVX(*mt_data_inf,ptrClass->Coeff_X,ptrClass->Coeff_Y,
-					 ptrClass->Coeff_Z); break;
-		default : ;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZ_Scale_SDRtoHDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -22462,21 +21444,10 @@ PVideoFrame __stdcall ConvertXYZ_Scale_SDRtoHDR::GetFrame(int n, IScriptEnvironm
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZ_SDRtoHDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_RGBP_al32=((((size_t)srcRr) & 0x1F)==0) && ((((size_t)srcGr) & 0x1F)==0)
 		&& ((((size_t)srcBr) & 0x1F)==0) && ((abs(src_pitch_R) & 0x1F)==0)
 		&& ((abs(src_pitch_G) & 0x1F)==0) && ((abs(src_pitch_B) & 0x1F)==0);
@@ -22543,16 +21514,6 @@ PVideoFrame __stdcall ConvertXYZ_Scale_SDRtoHDR::GetFrame(int n, IScriptEnvironm
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -22564,7 +21525,6 @@ PVideoFrame __stdcall ConvertXYZ_Scale_SDRtoHDR::GetFrame(int n, IScriptEnvironm
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -22591,16 +21551,6 @@ ConvertXYZ_Hable_HDRtoSDR::ConvertXYZ_Hable_HDRtoSDR(PClip _child,double _exp_X,
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -22618,14 +21568,12 @@ ConvertXYZ_Hable_HDRtoSDR::ConvertXYZ_Hable_HDRtoSDR(PClip _child,double _exp_X,
 		|| (lookupX_32==NULL) || (lookupY_32==NULL) || (lookupZ_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
 	if (!ComputeXYZScale(pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,Xmin,Ymin,Zmin,CoeffX,CoeffY,CoeffZ))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error while computing XYZ data!");
 	}
 
@@ -22674,16 +21622,6 @@ ConvertXYZ_Hable_HDRtoSDR::ConvertXYZ_Hable_HDRtoSDR(PClip _child,double _exp_X,
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -22702,9 +21640,7 @@ void ConvertXYZ_Hable_HDRtoSDR::FreeData(void)
 
 ConvertXYZ_Hable_HDRtoSDR::~ConvertXYZ_Hable_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -22720,44 +21656,7 @@ int __stdcall ConvertXYZ_Hable_HDRtoSDR::SetCacheHints(int cachehints,int frame_
 }
 
 
-void ConvertXYZ_Hable_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZ_Hable_HDRtoSDR *ptrClass=(ConvertXYZ_Hable_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupX_16,ptrClass->lookupY_16,
-					 ptrClass->lookupZ_16); break;
-		case 2 : Convert_XYZ_HDRtoSDR_32(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 3 : Convert_XYZ_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 4 : Convert_XYZ_HDRtoSDR_32_SSE41(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 5 : Convert_XYZ_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 7 : Convert_XYZ_HDRtoSDR_Hable_AVX(*mt_data_inf,ptrClass->exp_X,ptrClass->w_X,ptrClass->a_X,ptrClass->b_X,ptrClass->c_X,
-					 ptrClass->d_X,ptrClass->e_X,ptrClass->f_X,ptrClass->exp_Y,ptrClass->w_Y,ptrClass->a_Y,ptrClass->b_Y,ptrClass->c_Y,
-					 ptrClass->d_Y,ptrClass->e_Y,ptrClass->f_Y,ptrClass->exp_Z,ptrClass->w_Z,ptrClass->a_Z,ptrClass->b_Z,ptrClass->c_Z,
-					 ptrClass->d_Z,ptrClass->e_Z,ptrClass->f_Z); break;
-		case 8 : Convert_XYZ_HDRtoSDR_Hable_SSE2(*mt_data_inf,ptrClass->exp_X,ptrClass->w_X,ptrClass->a_X,ptrClass->b_X,ptrClass->c_X,
-					 ptrClass->d_X,ptrClass->e_X,ptrClass->f_X,ptrClass->exp_Y,ptrClass->w_Y,ptrClass->a_Y,ptrClass->b_Y,ptrClass->c_Y,
-					 ptrClass->d_Y,ptrClass->e_Y,ptrClass->f_Y,ptrClass->exp_Z,ptrClass->w_Z,ptrClass->a_Z,ptrClass->b_Z,ptrClass->c_Z,
-					 ptrClass->d_Z,ptrClass->e_Z,ptrClass->f_Z); break;
-		case 9 : Convert_XYZ_HDRtoSDR_Hable(*mt_data_inf,ptrClass->exp_X,ptrClass->w_X,ptrClass->a_X,ptrClass->b_X,ptrClass->c_X,
-					 ptrClass->d_X,ptrClass->e_X,ptrClass->f_X,ptrClass->exp_Y,ptrClass->w_Y,ptrClass->a_Y,ptrClass->b_Y,ptrClass->c_Y,
-					 ptrClass->d_Y,ptrClass->e_Y,ptrClass->f_Y,ptrClass->exp_Z,ptrClass->w_Z,ptrClass->a_Z,ptrClass->b_Z,ptrClass->c_Z,
-					 ptrClass->d_Z,ptrClass->e_Z,ptrClass->f_Z); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_XYZ_HDRtoSDR_32_AVX2(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZ_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -22806,21 +21705,10 @@ PVideoFrame __stdcall ConvertXYZ_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_XYZP_al32=((((size_t)srcXr) & 0x1F)==0) && ((((size_t)srcYr) & 0x1F)==0)
 		&& ((((size_t)srcZr) & 0x1F)==0) && ((abs(src_pitch_X) & 0x1F)==0)
 		&& ((abs(src_pitch_Y) & 0x1F)==0) && ((abs(src_pitch_Z) & 0x1F)==0);
@@ -22909,16 +21797,6 @@ PVideoFrame __stdcall ConvertXYZ_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -22945,7 +21823,6 @@ PVideoFrame __stdcall ConvertXYZ_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -22969,16 +21846,6 @@ ConvertRGB_Hable_HDRtoSDR::ConvertRGB_Hable_HDRtoSDR(PClip _child,double _exp_R,
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -22996,7 +21863,6 @@ ConvertRGB_Hable_HDRtoSDR::ConvertRGB_Hable_HDRtoSDR(PClip _child,double _exp_R,
 		|| (lookupR_32==NULL) || (lookupG_32==NULL) || (lookupB_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
@@ -23043,16 +21909,6 @@ ConvertRGB_Hable_HDRtoSDR::ConvertRGB_Hable_HDRtoSDR(PClip _child,double _exp_R,
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -23071,9 +21927,7 @@ void ConvertRGB_Hable_HDRtoSDR::FreeData(void)
 
 ConvertRGB_Hable_HDRtoSDR::~ConvertRGB_Hable_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -23089,39 +21943,7 @@ int __stdcall ConvertRGB_Hable_HDRtoSDR::SetCacheHints(int cachehints,int frame_
 }
 
 
-void ConvertRGB_Hable_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertRGB_Hable_HDRtoSDR *ptrClass=(ConvertRGB_Hable_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupR_16,ptrClass->lookupG_16,
-					 ptrClass->lookupB_16); break;
-		case 2 : Convert_RGB_HDRtoSDR_32(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 3 : Convert_RGB_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 4 : Convert_RGB_HDRtoSDR_32_SSE41(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 5 : Convert_RGB_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 7 : Convert_RGB_HDRtoSDR_Hable_AVX(*mt_data_inf,ptrClass->exp_R,ptrClass->w_R,ptrClass->a_R,ptrClass->b_R,ptrClass->c_R,
-					 ptrClass->d_R,ptrClass->e_R,ptrClass->f_R,ptrClass->exp_G,ptrClass->w_G,ptrClass->a_G,ptrClass->b_G,ptrClass->c_G,
-					 ptrClass->d_G,ptrClass->e_G,ptrClass->f_G,ptrClass->exp_B,ptrClass->w_B,ptrClass->a_B,ptrClass->b_B,ptrClass->c_B,
-					 ptrClass->d_B,ptrClass->e_B,ptrClass->f_B); break;
-		case 8 : Convert_RGB_HDRtoSDR_Hable_SSE2(*mt_data_inf,ptrClass->exp_R,ptrClass->w_R,ptrClass->a_R,ptrClass->b_R,ptrClass->c_R,
-					 ptrClass->d_R,ptrClass->e_R,ptrClass->f_R,ptrClass->exp_G,ptrClass->w_G,ptrClass->a_G,ptrClass->b_G,ptrClass->c_G,
-					 ptrClass->d_G,ptrClass->e_G,ptrClass->f_G,ptrClass->exp_B,ptrClass->w_B,ptrClass->a_B,ptrClass->b_B,ptrClass->c_B,
-					 ptrClass->d_B,ptrClass->e_B,ptrClass->f_B); break;
-		case 9 : Convert_RGB_HDRtoSDR_Hable(*mt_data_inf,ptrClass->exp_R,ptrClass->w_R,ptrClass->a_R,ptrClass->b_R,ptrClass->c_R,
-					 ptrClass->d_R,ptrClass->e_R,ptrClass->f_R,ptrClass->exp_G,ptrClass->w_G,ptrClass->a_G,ptrClass->b_G,ptrClass->c_G,
-					 ptrClass->d_G,ptrClass->e_G,ptrClass->f_G,ptrClass->exp_B,ptrClass->w_B,ptrClass->a_B,ptrClass->b_B,ptrClass->c_B,
-					 ptrClass->d_B,ptrClass->e_B,ptrClass->f_B); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_RGB_HDRtoSDR_32_AVX2(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertRGB_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -23170,21 +21992,10 @@ PVideoFrame __stdcall ConvertRGB_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_RGBP_al32=((((size_t)srcRr) & 0x1F)==0) && ((((size_t)srcGr) & 0x1F)==0)
 		&& ((((size_t)srcBr) & 0x1F)==0) && ((abs(src_pitch_R) & 0x1F)==0)
 		&& ((abs(src_pitch_G) & 0x1F)==0) && ((abs(src_pitch_B) & 0x1F)==0);
@@ -23273,16 +22084,6 @@ PVideoFrame __stdcall ConvertRGB_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -23304,7 +22105,6 @@ PVideoFrame __stdcall ConvertRGB_Hable_HDRtoSDR::GetFrame(int n, IScriptEnvironm
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -23328,16 +22128,6 @@ ConvertXYZ_Mobius_HDRtoSDR::ConvertXYZ_Mobius_HDRtoSDR(PClip _child,double _exp_
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -23355,14 +22145,12 @@ ConvertXYZ_Mobius_HDRtoSDR::ConvertXYZ_Mobius_HDRtoSDR(PClip _child,double _exp_
 		|| (lookupX_32==NULL) || (lookupY_32==NULL) || (lookupZ_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
 	if (!ComputeXYZScale(pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,Xmin,Ymin,Zmin,CoeffX,CoeffY,CoeffZ))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error while computing XYZ data!");
 	}
 
@@ -23423,16 +22211,6 @@ ConvertXYZ_Mobius_HDRtoSDR::ConvertXYZ_Mobius_HDRtoSDR(PClip _child,double _exp_
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -23451,9 +22229,7 @@ void ConvertXYZ_Mobius_HDRtoSDR::FreeData(void)
 
 ConvertXYZ_Mobius_HDRtoSDR::~ConvertXYZ_Mobius_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -23469,38 +22245,7 @@ int __stdcall ConvertXYZ_Mobius_HDRtoSDR::SetCacheHints(int cachehints,int frame
 }
 
 
-void ConvertXYZ_Mobius_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZ_Mobius_HDRtoSDR *ptrClass=(ConvertXYZ_Mobius_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupX_16,ptrClass->lookupY_16,
-					 ptrClass->lookupZ_16); break;
-		case 2 : Convert_XYZ_HDRtoSDR_32(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 3 : Convert_XYZ_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 4 : Convert_XYZ_HDRtoSDR_32_SSE41(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 5 : Convert_XYZ_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 7 : Convert_XYZ_HDRtoSDR_Mobius_AVX(*mt_data_inf,ptrClass->exp_X,ptrClass->trans_X,ptrClass->peak_X,
-					 ptrClass->exp_Y,ptrClass->trans_Y,ptrClass->peak_Y,ptrClass->exp_Z,ptrClass->trans_Z,ptrClass->peak_Z); break;
-		case 8 : Convert_XYZ_HDRtoSDR_Mobius_SSE2(*mt_data_inf,ptrClass->exp_X,ptrClass->trans_X,ptrClass->peak_X,
-					 ptrClass->exp_Y,ptrClass->trans_Y,ptrClass->peak_Y,ptrClass->exp_Z,ptrClass->trans_Z,ptrClass->peak_Z); break;
-		case 9 : Convert_XYZ_HDRtoSDR_Mobius(*mt_data_inf,ptrClass->exp_X,ptrClass->trans_X,ptrClass->peak_X,
-					 ptrClass->exp_Y,ptrClass->trans_Y,ptrClass->peak_Y,ptrClass->exp_Z,ptrClass->trans_Z,ptrClass->peak_Z); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_XYZ_HDRtoSDR_32_AVX2(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZ_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -23549,20 +22294,8 @@ PVideoFrame __stdcall ConvertXYZ_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnviron
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
-
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
 
 	const bool src_XYZP_al32=((((size_t)srcXr) & 0x1F)==0) && ((((size_t)srcYr) & 0x1F)==0)
 		&& ((((size_t)srcZr) & 0x1F)==0) && ((abs(src_pitch_X) & 0x1F)==0)
@@ -23652,16 +22385,6 @@ PVideoFrame __stdcall ConvertXYZ_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnviron
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -23688,7 +22411,6 @@ PVideoFrame __stdcall ConvertXYZ_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnviron
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -23710,16 +22432,6 @@ ConvertRGB_Mobius_HDRtoSDR::ConvertRGB_Mobius_HDRtoSDR(PClip _child,double _exp_
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -23737,7 +22449,6 @@ ConvertRGB_Mobius_HDRtoSDR::ConvertRGB_Mobius_HDRtoSDR(PClip _child,double _exp_
 		|| (lookupR_32==NULL) || (lookupG_32==NULL) || (lookupB_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
@@ -23796,16 +22507,6 @@ ConvertRGB_Mobius_HDRtoSDR::ConvertRGB_Mobius_HDRtoSDR(PClip _child,double _exp_
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -23824,9 +22525,7 @@ void ConvertRGB_Mobius_HDRtoSDR::FreeData(void)
 
 ConvertRGB_Mobius_HDRtoSDR::~ConvertRGB_Mobius_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -23842,33 +22541,7 @@ int __stdcall ConvertRGB_Mobius_HDRtoSDR::SetCacheHints(int cachehints,int frame
 }
 
 
-void ConvertRGB_Mobius_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertRGB_Mobius_HDRtoSDR *ptrClass=(ConvertRGB_Mobius_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupR_16,ptrClass->lookupG_16,
-					 ptrClass->lookupB_16); break;
-		case 2 : Convert_RGB_HDRtoSDR_32(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 3 : Convert_RGB_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 4 : Convert_RGB_HDRtoSDR_32_SSE41(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 5 : Convert_RGB_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 7 : Convert_RGB_HDRtoSDR_Mobius_AVX(*mt_data_inf,ptrClass->exp_R,ptrClass->trans_R,ptrClass->peak_R,
-					 ptrClass->exp_G,ptrClass->trans_G,ptrClass->peak_G,ptrClass->exp_B,ptrClass->trans_B,ptrClass->peak_B); break;
-		case 8 : Convert_RGB_HDRtoSDR_Mobius_SSE2(*mt_data_inf,ptrClass->exp_R,ptrClass->trans_R,ptrClass->peak_R,
-					 ptrClass->exp_G,ptrClass->trans_G,ptrClass->peak_G,ptrClass->exp_B,ptrClass->trans_B,ptrClass->peak_B); break;
-		case 9 : Convert_RGB_HDRtoSDR_Mobius(*mt_data_inf,ptrClass->exp_R,ptrClass->trans_R,ptrClass->peak_R,
-					 ptrClass->exp_G,ptrClass->trans_G,ptrClass->peak_G,ptrClass->exp_B,ptrClass->trans_B,ptrClass->peak_B); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_RGB_HDRtoSDR_32_AVX2(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertRGB_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -23917,21 +22590,10 @@ PVideoFrame __stdcall ConvertRGB_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnviron
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_RGBP_al32=((((size_t)srcRr) & 0x1F)==0) && ((((size_t)srcGr) & 0x1F)==0)
 		&& ((((size_t)srcBr) & 0x1F)==0) && ((abs(src_pitch_R) & 0x1F)==0)
 		&& ((abs(src_pitch_G) & 0x1F)==0) && ((abs(src_pitch_B) & 0x1F)==0);
@@ -24020,16 +22682,6 @@ PVideoFrame __stdcall ConvertRGB_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnviron
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -24051,7 +22703,6 @@ PVideoFrame __stdcall ConvertRGB_Mobius_HDRtoSDR::GetFrame(int n, IScriptEnviron
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -24075,16 +22726,6 @@ ConvertXYZ_Reinhard_HDRtoSDR::ConvertXYZ_Reinhard_HDRtoSDR(PClip _child,double _
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -24102,14 +22743,12 @@ ConvertXYZ_Reinhard_HDRtoSDR::ConvertXYZ_Reinhard_HDRtoSDR(PClip _child,double _
 		|| (lookupX_32==NULL) || (lookupY_32==NULL) || (lookupZ_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
 	if (!ComputeXYZScale(pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,Xmin,Ymin,Zmin,CoeffX,CoeffY,CoeffZ))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error while computing XYZ data!");
 	}
 
@@ -24166,16 +22805,6 @@ ConvertXYZ_Reinhard_HDRtoSDR::ConvertXYZ_Reinhard_HDRtoSDR(PClip _child,double _
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -24194,9 +22823,7 @@ void ConvertXYZ_Reinhard_HDRtoSDR::FreeData(void)
 
 ConvertXYZ_Reinhard_HDRtoSDR::~ConvertXYZ_Reinhard_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -24212,38 +22839,7 @@ int __stdcall ConvertXYZ_Reinhard_HDRtoSDR::SetCacheHints(int cachehints,int fra
 }
 
 
-void ConvertXYZ_Reinhard_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertXYZ_Reinhard_HDRtoSDR *ptrClass=(ConvertXYZ_Reinhard_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupX_16,ptrClass->lookupY_16,
-					 ptrClass->lookupZ_16); break;
-		case 2 : Convert_XYZ_HDRtoSDR_32(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 3 : Convert_XYZ_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 4 : Convert_XYZ_HDRtoSDR_32_SSE41(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 5 : Convert_XYZ_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-		case 7 : Convert_XYZ_HDRtoSDR_Reinhard_AVX(*mt_data_inf,ptrClass->exp_X,ptrClass->contr_X,ptrClass->peak_X,
-					 ptrClass->exp_Y,ptrClass->contr_Y,ptrClass->peak_Y,ptrClass->exp_Z,ptrClass->contr_Z,ptrClass->peak_Z); break;
-		case 8 : Convert_XYZ_HDRtoSDR_Reinhard_SSE2(*mt_data_inf,ptrClass->exp_X,ptrClass->contr_X,ptrClass->peak_X,
-					 ptrClass->exp_Y,ptrClass->contr_Y,ptrClass->peak_Y,ptrClass->exp_Z,ptrClass->contr_Z,ptrClass->peak_Z); break;
-		case 9 : Convert_XYZ_HDRtoSDR_Reinhard(*mt_data_inf,ptrClass->exp_X,ptrClass->contr_X,ptrClass->peak_X,
-					 ptrClass->exp_Y,ptrClass->contr_Y,ptrClass->peak_Y,ptrClass->exp_Z,ptrClass->contr_Z,ptrClass->peak_Z); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_XYZ_HDRtoSDR_32_AVX2(*mt_data_inf,ptrClass->Xmin,ptrClass->Ymin,ptrClass->Zmin,ptrClass->CoeffX,
-					 ptrClass->CoeffY,ptrClass->CoeffZ,ptrClass->lookupX_32,ptrClass->lookupY_32,ptrClass->lookupZ_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertXYZ_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -24292,21 +22888,10 @@ PVideoFrame __stdcall ConvertXYZ_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvir
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_XYZP_al32=((((size_t)srcXr) & 0x1F)==0) && ((((size_t)srcYr) & 0x1F)==0)
 		&& ((((size_t)srcZr) & 0x1F)==0) && ((abs(src_pitch_X) & 0x1F)==0)
 		&& ((abs(src_pitch_Y) & 0x1F)==0) && ((abs(src_pitch_Z) & 0x1F)==0);
@@ -24395,16 +22980,6 @@ PVideoFrame __stdcall ConvertXYZ_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvir
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -24431,7 +23006,6 @@ PVideoFrame __stdcall ConvertXYZ_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvir
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -24453,16 +23027,6 @@ ConvertRGB_Reinhard_HDRtoSDR::ConvertRGB_Reinhard_HDRtoSDR(PClip _child,double _
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -24480,7 +23044,6 @@ ConvertRGB_Reinhard_HDRtoSDR::ConvertRGB_Reinhard_HDRtoSDR(PClip _child,double _
 		|| (lookupR_32==NULL) || (lookupG_32==NULL) || (lookupB_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
@@ -24535,16 +23098,6 @@ ConvertRGB_Reinhard_HDRtoSDR::ConvertRGB_Reinhard_HDRtoSDR(PClip _child,double _
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -24563,9 +23116,7 @@ void ConvertRGB_Reinhard_HDRtoSDR::FreeData(void)
 
 ConvertRGB_Reinhard_HDRtoSDR::~ConvertRGB_Reinhard_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -24581,33 +23132,7 @@ int __stdcall ConvertRGB_Reinhard_HDRtoSDR::SetCacheHints(int cachehints,int fra
 }
 
 
-void ConvertRGB_Reinhard_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertRGB_Reinhard_HDRtoSDR *ptrClass=(ConvertRGB_Reinhard_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_XYZ_HDRtoSDR_16(*mt_data_inf,ptrClass->lookupR_16,ptrClass->lookupG_16,
-					 ptrClass->lookupB_16); break;
-		case 2 : Convert_RGB_HDRtoSDR_32(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 3 : Convert_RGB_HDRtoSDR_32_SSE2(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 4 : Convert_RGB_HDRtoSDR_32_SSE41(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 5 : Convert_RGB_HDRtoSDR_32_AVX(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-		case 7 : Convert_RGB_HDRtoSDR_Reinhard_AVX(*mt_data_inf,ptrClass->exp_R,ptrClass->contr_R,ptrClass->peak_R,
-					 ptrClass->exp_G,ptrClass->contr_G,ptrClass->peak_G,ptrClass->exp_B,ptrClass->contr_B,ptrClass->peak_B); break;
-		case 8 : Convert_RGB_HDRtoSDR_Reinhard_SSE2(*mt_data_inf,ptrClass->exp_R,ptrClass->contr_R,ptrClass->peak_R,
-					 ptrClass->exp_G,ptrClass->contr_G,ptrClass->peak_G,ptrClass->exp_B,ptrClass->contr_B,ptrClass->peak_B); break;
-		case 9 : Convert_RGB_HDRtoSDR_Reinhard(*mt_data_inf,ptrClass->exp_R,ptrClass->contr_R,ptrClass->peak_R,
-					 ptrClass->exp_G,ptrClass->contr_G,ptrClass->peak_G,ptrClass->exp_B,ptrClass->contr_B,ptrClass->peak_B); break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_RGB_HDRtoSDR_32_AVX2(*mt_data_inf,ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32); break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertRGB_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -24656,21 +23181,10 @@ PVideoFrame __stdcall ConvertRGB_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvir
 		dst_modulo=dst_pitch-dst->GetRowSize();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_RGBP_al32=((((size_t)srcRr) & 0x1F)==0) && ((((size_t)srcGr) & 0x1F)==0)
 		&& ((((size_t)srcBr) & 0x1F)==0) && ((abs(src_pitch_R) & 0x1F)==0)
 		&& ((abs(src_pitch_G) & 0x1F)==0) && ((abs(src_pitch_B) & 0x1F)==0);
@@ -24759,16 +23273,6 @@ PVideoFrame __stdcall ConvertRGB_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvir
 	}
 	else f_proc=1;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -24790,7 +23294,6 @@ PVideoFrame __stdcall ConvertRGB_Reinhard_HDRtoSDR::GetFrame(int n, IScriptEnvir
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -24809,16 +23312,6 @@ ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR
 		fastmode(_fastmode),threads(_threads),sleep(_sleep)
 {
 	UserId=0;
-
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
 
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
@@ -24849,7 +23342,6 @@ ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR
 		|| (lookupY1_32==NULL) || (lookupY2_32==NULL) || (lookupBY_32==NULL) || (lookupRY_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
@@ -24920,16 +23412,6 @@ ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 
@@ -24960,9 +23442,7 @@ void ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::FreeData(void)
 
 ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::~ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -24978,26 +23458,7 @@ int __stdcall ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::SetCacheHints(int cachehi
 }
 
 
-void ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR *ptrClass=(ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_RGBPS_HDRtoSDR_BT2446_A_32(*mt_data_inf,ptrClass->lookupEOTF_32,
-					 ptrClass->lookupR_32,ptrClass->lookupG_32,ptrClass->lookupB_32,ptrClass->lookupY1_32,
-					 ptrClass->lookupY2_32,ptrClass->lookupBY_32,ptrClass->lookupRY_32); break;
-		case 2 : Convert_RGB64_HDRtoSDR_BT2446_A_16(*mt_data_inf,ptrClass->lookupEOTF_16,
-					 ptrClass->lookupR_16,ptrClass->lookupG_16,ptrClass->lookupB_16,ptrClass->lookupY1_16,
-					 ptrClass->lookupY2_16,ptrClass->lookupBY_16,ptrClass->lookupRY_16); break;
-		case 3 : Convert_RGBPS_HDRtoSDR_BT2446_A(*mt_data_inf,(float)ptrClass->Lhdr,
-					 (float)ptrClass->Lsdr,(float)ptrClass->CoeffAdj); break;
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -25045,20 +23506,8 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::GetFrame(int n, I
 	dst_modulo_U=dst_pitch_U-dst->GetRowSize(PLANAR_U);
 	dst_modulo_V=dst_pitch_V-dst->GetRowSize(PLANAR_V);
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
-
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
 
 	uint8_t f_proc=0;
 
@@ -25109,16 +23558,6 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::GetFrame(int n, I
 	}
 	else f_proc=2;
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -25132,7 +23571,6 @@ PVideoFrame __stdcall ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR::GetFrame(int n, I
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -25197,16 +23635,6 @@ ConverXYZ_BT2446_C_HDRtoSDR::ConverXYZ_BT2446_C_HDRtoSDR(PClip _child,bool _Chro
 {
 	UserId=0;
 
-	StaticThreadpoolF=StaticThreadpool;
-
-	for (int16_t i=0; i<MAX_MT_THREADS; i++)
-	{
-		MT_Thread[i].pClass=this;
-		MT_Thread[i].f_process=0;
-		MT_Thread[i].thread_Id=(uint8_t)i;
-		MT_Thread[i].pFunc=StaticThreadpoolF;
-	}
-
 	grey = vi.IsY();
 	isRGBPfamily = vi.IsPlanarRGB() || vi.IsPlanarRGBA();
 	isAlphaChannel = vi.IsYUVA() || vi.IsPlanarRGBA();
@@ -25232,7 +23660,6 @@ ConverXYZ_BT2446_C_HDRtoSDR::ConverXYZ_BT2446_C_HDRtoSDR(PClip _child,bool _Chro
 		|| (lookup2X_32==NULL) || (lookup2Y_32==NULL) || (lookup2Z_32==NULL))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error while allocating the lookup tables!");
 	}
 
@@ -25240,7 +23667,6 @@ ConverXYZ_BT2446_C_HDRtoSDR::ConverXYZ_BT2446_C_HDRtoSDR(PClip _child,bool _Chro
 	if (vi_RGBPS==NULL)
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error while creating videoinfo!");
 	}
 	vi_RGBPS->pixel_type=VideoInfo::CS_RGBPS;
@@ -25248,7 +23674,6 @@ ConverXYZ_BT2446_C_HDRtoSDR::ConverXYZ_BT2446_C_HDRtoSDR(PClip _child,bool _Chro
 	if (!ComputeXYZScale(pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,Xmin,Ymin,Zmin,CoeffX,CoeffY,CoeffZ))
 	{
 		FreeData();
-		if (threads>1) poolInterface->DeAllocateAllThreads(true);
 		env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error while computing XYZ data!");
 	}
 
@@ -25348,16 +23773,6 @@ ConverXYZ_BT2446_C_HDRtoSDR::ConverXYZ_BT2446_C_HDRtoSDR(PClip _child,bool _Chro
 	AVX2_Enable=((env->GetCPUFlags()&CPUF_AVX2)!=0);
 	#endif
 
-	if (threads_number>1)
-	{
-		if (!poolInterface->GetUserId(UserId))
-		{
-			FreeData();
-			poolInterface->DeAllocateAllThreads(true);
-			env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error with the TheadPool while getting UserId!");
-		}
-	}
-
 	has_at_least_v8=true;
 	try { env->CheckVersion(8); } catch (const AvisynthError&) { has_at_least_v8=false; }
 }
@@ -25383,9 +23798,7 @@ void ConverXYZ_BT2446_C_HDRtoSDR::FreeData(void)
 
 ConverXYZ_BT2446_C_HDRtoSDR::~ConverXYZ_BT2446_C_HDRtoSDR() 
 {
-	if (threads_number>1) poolInterface->RemoveUserId(UserId);
 	FreeData();
-	if (threads>1) poolInterface->DeAllocateAllThreads(true);
 }
 
 
@@ -25401,72 +23814,7 @@ int __stdcall ConverXYZ_BT2446_C_HDRtoSDR::SetCacheHints(int cachehints,int fram
 }
 
 
-void ConverXYZ_BT2446_C_HDRtoSDR::StaticThreadpool(void *ptr)
-{
-	const Public_MT_Data_Thread *data=(const Public_MT_Data_Thread *)ptr;
-	ConverXYZ_BT2446_C_HDRtoSDR *ptrClass=(ConverXYZ_BT2446_C_HDRtoSDR *)data->pClass;
-
-	MT_Data_Info_HDRTools *mt_data_inf=((MT_Data_Info_HDRTools *)data->pData)+data->thread_Id;
-	
-	switch(data->f_process)
-	{
-		case 1 : Convert_RGBPS_HDRtoSDR_BT2446_C_1(*mt_data_inf,ptrClass->coeff_k,
-					 (float)ptrClass->Yhdr_ip,(float)ptrClass->Lhdr,(float)ptrClass->Lsdr,
-					 ptrClass->PQMode);
-			break;
-		case 2 : Convert_RGBPS_HDRtoSDR_BT2446_C_1_32(*mt_data_inf,ptrClass->lookupY_32,
-					 ptrClass->lookupiY_32,(float)ptrClass->Ymin,ptrClass->CoeffY);
-			break;
-		case 3 : Convert_RGBPS_HDRtoSDR_BT2446_C_1_32_SSE2(*mt_data_inf,ptrClass->lookupY_32,
-					 ptrClass->lookupiY_32,(float)ptrClass->Ymin,ptrClass->CoeffY);
-			break;
-		case 4 : Convert_RGBPS_HDRtoSDR_BT2446_C_1_32_SSE41(*mt_data_inf,ptrClass->lookupY_32,
-					 ptrClass->lookupiY_32,(float)ptrClass->Ymin,ptrClass->CoeffY);
-			break;
-		case 5 : Convert_RGBPS_HDRtoSDR_BT2446_C_1_32_AVX(*mt_data_inf,ptrClass->lookupY_32,
-					 ptrClass->lookupiY_32,(float)ptrClass->Ymin,ptrClass->CoeffY);
-			break;
-		case 7 : Convert_RGB64_HDRtoSDR_BT2446_C_1_16(*mt_data_inf,ptrClass->lookupY_16,
-					 ptrClass->lookupX_16,ptrClass->lookupiY_16,ptrClass->lookupZ_16,
-					 (float)ptrClass->Xmin,(float)ptrClass->Zmin,ptrClass->CoeffX,ptrClass->CoeffZ);
-			break;
-		case 8 : Convert_RGB64_HDRtoSDR_BT2446_C_1_16_SSE2(*mt_data_inf,ptrClass->lookupY_16,
-					 ptrClass->lookupX_16,ptrClass->lookupiY_16,ptrClass->lookupZ_16,
-					 (float)ptrClass->Xmin,(float)ptrClass->Zmin,ptrClass->CoeffX,ptrClass->CoeffZ);
-			break;
-		case 9 : Convert_RGB64_HDRtoSDR_BT2446_C_1_16_SSE41(*mt_data_inf,ptrClass->lookupY_16,
-					 ptrClass->lookupX_16,ptrClass->lookupiY_16,ptrClass->lookupZ_16,
-					 (float)ptrClass->Xmin,(float)ptrClass->Zmin,ptrClass->CoeffX,ptrClass->CoeffZ);
-			break;
-		case 10 : Convert_RGB64_HDRtoSDR_BT2446_C_1_16_AVX(*mt_data_inf,ptrClass->lookupY_16,
-					 ptrClass->lookupX_16,ptrClass->lookupiY_16,ptrClass->lookupZ_16,
-					 (float)ptrClass->Xmin,(float)ptrClass->Zmin,ptrClass->CoeffX,ptrClass->CoeffZ);
-			break;
-		case 12 : Convert_RGBPS_HDRtoSDR_BT2446_C_2(*mt_data_inf,ptrClass->Xn,ptrClass->Yn,ptrClass->Zn,
-					  ptrClass->WhiteShift,(float)ptrClass->Lhdr,ptrClass->PQMode);
-			break;
-		case 13 : Convert_RGB64_HDRtoSDR_BT2446_C_2_16(*mt_data_inf,ptrClass->lookup2X_16,ptrClass->lookup2Y_16,
-					  ptrClass->lookup2Z_16,(float)ptrClass->Xmin,(float)ptrClass->Ymin,(float)ptrClass->Zmin,
-					  ptrClass->CoeffX,ptrClass->CoeffY,ptrClass->CoeffZ,
-					  ptrClass->Xn,ptrClass->Yn,ptrClass->Zn,ptrClass->PQMode,(float)ptrClass->Lhdr,ptrClass->WhiteShift);
-			break;
-		case 14 : Convert_RGBPS_HDRtoSDR_BT2446_C_2_32(*mt_data_inf,ptrClass->lookup2X_32,ptrClass->lookup2Y_32,
-					  ptrClass->lookup2Z_32,ptrClass->Xn,ptrClass->Yn,ptrClass->Zn,(float)ptrClass->Xmin,
-					  (float)ptrClass->Ymin,(float)ptrClass->Zmin,ptrClass->CoeffX,ptrClass->CoeffY,
-					  ptrClass->CoeffZ,ptrClass->WhiteShift,(float)ptrClass->Lhdr,ptrClass->PQMode);
-			break;
-#ifdef AVX2_BUILD_POSSIBLE
-		case 6 : Convert_RGBPS_HDRtoSDR_BT2446_C_1_32_AVX2(*mt_data_inf,ptrClass->lookupY_32,
-					 ptrClass->lookupiY_32,(float)ptrClass->Ymin,ptrClass->CoeffY);
-			break;
-		case 11 : Convert_RGB64_HDRtoSDR_BT2446_C_1_16_AVX2(*mt_data_inf,ptrClass->lookupY_16,
-					 ptrClass->lookupX_16,ptrClass->lookupiY_16,ptrClass->lookupZ_16,
-					 (float)ptrClass->Xmin,(float)ptrClass->Zmin,ptrClass->CoeffX,ptrClass->CoeffZ);
-			break;
-#endif
-		default : break;
-	}
-}
+// DELETED //
 
 
 PVideoFrame __stdcall ConverXYZ_BT2446_C_HDRtoSDR::GetFrame(int n, IScriptEnvironment* env) 
@@ -25540,21 +23888,10 @@ PVideoFrame __stdcall ConverXYZ_BT2446_C_HDRtoSDR::GetFrame(int n, IScriptEnviro
 		srcw=src->GetWritePtr();
 	}
 
-	Public_MT_Data_Thread MT_ThreadGF[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_DataGF[MAX_MT_THREADS];
 	int8_t nPool=-1;
 
-	memcpy(MT_ThreadGF,MT_Thread,sizeof(MT_ThreadGF));
-
-	for(uint8_t i=0; i<threads_number; i++)
-		MT_ThreadGF[i].pData=(void *)MT_DataGF;
-
-	if (threads_number>1)
-	{
-		if ((!poolInterface->RequestThreadPool(UserId,threads_number,MT_ThreadGF,nPool,false,true)) || (nPool==-1))
-			env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error with the TheadPool while requesting threadpool !");
-	}
-	
+	// DELETED //	
 	const bool src_al32=((((size_t)srcr) & 0x1F)==0) && ((abs(src_pitch) & 0x1F)==0);
 	const bool src_al16=((((size_t)srcr) & 0x0F)==0) && ((abs(src_pitch) & 0x0F)==0);
 
@@ -25668,16 +24005,7 @@ PVideoFrame __stdcall ConverXYZ_BT2446_C_HDRtoSDR::GetFrame(int n, IScriptEnviro
 
 	if (f_proc!=0)
 	{
-		if (threads_number>1)
-		{
-			for(uint8_t i=0; i<threads_number; i++)
-				MT_ThreadGF[i].f_process=f_proc;
-			if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
 
-			for(uint8_t i=0; i<threads_number; i++)
-				MT_ThreadGF[i].f_process=0;
-		}
-		else
 		{
 			switch(f_proc)
 			{
@@ -25782,16 +24110,6 @@ PVideoFrame __stdcall ConverXYZ_BT2446_C_HDRtoSDR::GetFrame(int n, IScriptEnviro
 		}
 	}
 
-	if (threads_number>1)
-	{
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=f_proc;
-		if (poolInterface->StartThreads(UserId,nPool)) poolInterface->WaitThreadsEnd(UserId,nPool);
-
-		for(uint8_t i=0; i<threads_number; i++)
-			MT_ThreadGF[i].f_process=0;
-	}
-	else
 	{
 		switch(f_proc)
 		{
@@ -25828,7 +24146,6 @@ PVideoFrame __stdcall ConverXYZ_BT2446_C_HDRtoSDR::GetFrame(int n, IScriptEnviro
 		}
 	}
 
-	if (threads_number>1) poolInterface->ReleaseThreadPool(UserId,sleep,nPool);
 
 	return dst;
 }
@@ -25885,7 +24202,6 @@ AVSValue __cdecl Create_ConvertYUVtoLinearRGB(AVSValue args, void* user_data, IS
 	const bool SetAffinity=args[14].AsBool(false);
 	const bool sleep = args[15].AsBool(false);
 	int prefetch=args[16].AsInt(0);
-	int thread_level=args[17].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
@@ -25898,65 +24214,8 @@ AVSValue __cdecl Create_ConvertYUVtoLinearRGB(AVSValue args, void* user_data, IS
 	if ((HDRMode<0) || (HDRMode>2))
 		env->ThrowError("ConvertYUVtoLinearRGB: [HDRMode] must be 0, 1 or 2");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertYUVtoLinearRGB: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertYUVtoLinearRGB: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertYUVtoLinearRGB: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertYUVtoLinearRGB: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertYUVtoLinearRGB: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertYUVtoLinearRGB(args[0].AsClip(),Color,OutputMode,HDRMode,HLG_Lb,HLG_Lw,HLGColor,OOTF,EOTF,fullrange,
 		mpeg2c,threads_number,sleep,env);
@@ -26010,7 +24269,6 @@ AVSValue __cdecl Create_ConvertYUVtoXYZ(AVSValue args, void* user_data, IScriptE
 	const bool SetAffinity=args[23].AsBool(false);
 	const bool sleep = args[24].AsBool(false);
 	int prefetch=args[25].AsInt(0);
-	int thread_level=args[26].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
@@ -26074,65 +24332,8 @@ AVSValue __cdecl Create_ConvertYUVtoXYZ(AVSValue args, void* user_data, IScriptE
 		|| ((Ry<=0.0f) || (Ry>1.0f)) || ((Gy<=0.0f) || (Gy>1.0f)) || ((By<=0.0f) || (By>1.0f)) || ((Wy<=0.0f) || (Wy>1.0f)))
 		env->ThrowError("ConvertYUVtoXYZ: Invalid chromaticity datas");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertYUVtoXYZ: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertYUVtoXYZ: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertYUVtoXYZ: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertYUVtoXYZ: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertYUVtoXYZ: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertYUVtoXYZ: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertYUVtoXYZ: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertYUVtoXYZ: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertYUVtoXYZ(args[0].AsClip(),Color,OutputMode,HDRMode,HLG_Lb,HLG_Lw,Crosstalk,HLGColor,OOTF,EOTF,
 		fullrange,mpeg2c,Rx,Ry,Gx,Gy,Bx,By,Wx,Wy,threads_number,sleep,env);
@@ -26184,7 +24385,6 @@ AVSValue __cdecl Create_ConvertLinearRGBtoYUV(AVSValue args, void* user_data, IS
 	const bool SetAffinity=args[15].AsBool(false);
 	const bool sleep = args[16].AsBool(false);
 	int prefetch=args[17].AsInt(0);
-	int thread_level=args[18].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
@@ -26195,65 +24395,8 @@ AVSValue __cdecl Create_ConvertLinearRGBtoYUV(AVSValue args, void* user_data, IS
 	if ((HDRMode<0) || (HDRMode>2))
 		env->ThrowError("ConvertLinearRGBtoYUV: [HDRMode] must be 0, 1 or 2");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertLinearRGBtoYUV: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertLinearRGBtoYUV: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertLinearRGBtoYUV: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertLinearRGBtoYUV: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertLinearRGBtoYUV: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertLinearRGBtoYUV: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertLinearRGBtoYUV: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertLinearRGBtoYUV: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertLinearRGBtoYUV(args[0].AsClip(),Color,OutputMode,HDRMode,HLG_Lb,HLG_Lw,HLGColor,OOTF,EOTF,fullrange,
 		mpeg2c,fastmode,threads_number,sleep,env);
@@ -26306,7 +24449,6 @@ AVSValue __cdecl Create_ConvertRGBtoXYZ(AVSValue args, void* user_data, IScriptE
 	const bool SetAffinity=args[22].AsBool(false);
 	const bool sleep = args[23].AsBool(false);
 	int prefetch=args[24].AsInt(0);
-	int thread_level=args[25].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
@@ -26370,65 +24512,8 @@ AVSValue __cdecl Create_ConvertRGBtoXYZ(AVSValue args, void* user_data, IScriptE
 		|| ((Ry<=0.0f) || (Ry>1.0f)) || ((Gy<=0.0f) || (Gy>1.0f)) || ((By<=0.0f) || (By>1.0f)) || ((Wy<=0.0f) || (Wy>1.0f)))
 		env->ThrowError("ConvertRGBtoXYZ: Invalid chromaticity datas");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertRGBtoXYZ: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertRGBtoXYZ: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertRGBtoXYZ: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertRGBtoXYZ: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertRGBtoXYZ: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertRGBtoXYZ: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertRGBtoXYZ: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertRGBtoXYZ: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertRGBtoXYZ(args[0].AsClip(),Color,OutputMode,HDRMode,HLG_Lb,HLG_Lw,crosstalk,HLGColor,
 		OOTF,EOTF,fastmode,Rx,Ry,Gx,Gy,Bx,By,Wx,Wy,threads_number,sleep,env);
@@ -26490,7 +24575,6 @@ AVSValue __cdecl Create_ConvertXYZtoYUV(AVSValue args, void* user_data, IScriptE
 	const bool SetAffinity=args[33].AsBool(false);
 	const bool sleep = args[34].AsBool(false);
 	int prefetch=args[35].AsInt(0);
-	int thread_level=args[36].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
@@ -26628,65 +24712,8 @@ AVSValue __cdecl Create_ConvertXYZtoYUV(AVSValue args, void* user_data, IScriptE
 		|| ((pRy<=0.0f) || (pRy>1.0f)) || ((pGy<=0.0f) || (pGy>1.0f)) || ((pBy<=0.0f) || (pBy>1.0f)) || ((pWy<=0.0f) || (pWy>1.0f)))
 		env->ThrowError("ConvertXYZtoYUV: Invalid [pR,pG,pB,pW][x,y] chromaticity datas");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZtoYUV: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZtoYUV: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZtoYUV: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZtoYUV: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZtoYUV: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZtoYUV: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZtoYUV: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZtoYUV: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZtoYUV(args[0].AsClip(),Color,OutputMode,HDRMode,HLG_Lb,HLG_Lw,crosstalk,HLGColor,
 		OOTF,EOTF,fullrange,mpeg2c,fastmode,Rx,Ry,Gx,Gy,Bx,By,Wx,Wy,pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,
@@ -26744,7 +24771,6 @@ AVSValue __cdecl Create_ConvertXYZtoRGB(AVSValue args, void* user_data, IScriptE
 	const bool SetAffinity=args[31].AsBool(false);
 	const bool sleep = args[32].AsBool(false);
 	int prefetch=args[33].AsInt(0);
-	int thread_level=args[34].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
@@ -26883,65 +24909,8 @@ AVSValue __cdecl Create_ConvertXYZtoRGB(AVSValue args, void* user_data, IScriptE
 		|| ((pRy<=0.0f) || (pRy>1.0f)) || ((pGy<=0.0f) || (pGy>1.0f)) || ((pBy<=0.0f) || (pBy>1.0f)) || ((pWy<=0.0f) || (pWy>1.0f)))
 		env->ThrowError("ConvertXYZtoRGB: Invalid [pR,pG,pB,pW][x,y] chromaticity datas");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZtoRGB: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZtoRGB: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZtoRGB: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZtoRGB: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZtoRGB: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZtoRGB: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZtoRGB: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZtoRGB: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZtoRGB(args[0].AsClip(),Color,OutputMode,HDRMode,HLG_Lb,HLG_Lw,crosstalk,HLGColor,
 		OOTF,EOTF,fastmode,Rx,Ry,Gx,Gy,Bx,By,Wx,Wy,pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,
@@ -26970,69 +24939,11 @@ AVSValue __cdecl Create_ConvertXYZ_Scale_HDRtoSDR(AVSValue args, void* user_data
 	const bool SetAffinity=args[7].AsBool(false);
 	const bool sleep = args[8].AsBool(false);
 	int prefetch=args[9].AsInt(0);
-	int thread_level=args[10].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZ_Scale_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZ_Scale_HDRtoSDR(args[0].AsClip(),Coeff_X,Coeff_Y,Coeff_Z,threads_number,sleep,env);
 }
@@ -27056,72 +24967,14 @@ AVSValue __cdecl Create_ConvertXYZ_Scale_SDRtoHDR(AVSValue args, void* user_data
 	const bool SetAffinity=args[7].AsBool(false);
 	const bool sleep = args[8].AsBool(false);
 	int prefetch=args[9].AsInt(0);
-	int thread_level=args[10].AsInt(6);
 
 	if ((Coeff_X==0.0f) || (Coeff_Y==0.0f) || (Coeff_Z==0.0f))
 		env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Wrong parameter value!");
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZ_Scale_SDRtoHDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZ_Scale_SDRtoHDR(args[0].AsClip(),Coeff_X,Coeff_Y,Coeff_Z,threads_number,sleep,env);
 }
@@ -27241,69 +25094,11 @@ AVSValue __cdecl Create_ConvertXYZ_Hable_HDRtoSDR(AVSValue args, void* user_data
 	const bool SetAffinity=args[38].AsBool(false);
 	const bool sleep = args[39].AsBool(false);
 	int prefetch=args[40].AsInt(0);
-	int thread_level=args[41].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZ_Hable_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZ_Hable_HDRtoSDR(args[0].AsClip(),exp_X,w_X,a_X,b_X,c_X,d_X,e_X,f_X,exp_Y,w_Y,a_Y,b_Y,c_Y,d_Y,e_Y,f_Y,
 		exp_Z,w_Z,a_Z,b_Z,c_Z,d_Z,e_Z,f_Z,pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,fastmode,threads_number,sleep,env);
@@ -27358,69 +25153,11 @@ AVSValue __cdecl Create_ConvertRGB_Hable_HDRtoSDR(AVSValue args, void* user_data
 	const bool SetAffinity=args[29].AsBool(false);
 	const bool sleep = args[30].AsBool(false);
 	int prefetch=args[31].AsInt(0);
-	int thread_level=args[32].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertRGB_Hable_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertRGB_Hable_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertRGB_Hable_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertRGB_Hable_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertRGB_Hable_HDRtoSDR(args[0].AsClip(),exp_R,w_R,a_R,b_R,c_R,d_R,e_R,f_R,exp_G,w_G,a_G,b_G,c_G,d_G,e_G,f_G,
 		exp_B,w_B,a_B,b_B,c_B,d_B,e_B,f_B,fastmode,threads_number,sleep,env);
@@ -27523,69 +25260,11 @@ AVSValue __cdecl Create_ConvertXYZ_Mobius_HDRtoSDR(AVSValue args, void* user_dat
 	const bool SetAffinity=args[23].AsBool(false);
 	const bool sleep = args[24].AsBool(false);
 	int prefetch=args[25].AsInt(0);
-	int thread_level=args[26].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZ_Mobius_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZ_Mobius_HDRtoSDR(args[0].AsClip(),exp_X,trans_X,peak_X,exp_Y,trans_Y,peak_Y,
 		exp_Z,trans_Z,peak_Z,pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,fastmode,threads_number,sleep,env);
@@ -27622,69 +25301,11 @@ AVSValue __cdecl Create_ConvertRGB_Mobius_HDRtoSDR(AVSValue args, void* user_dat
 	const bool SetAffinity=args[14].AsBool(false);
 	const bool sleep = args[15].AsBool(false);
 	int prefetch=args[16].AsInt(0);
-	int thread_level=args[17].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertRGB_Mobius_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertRGB_Mobius_HDRtoSDR(args[0].AsClip(),exp_R,trans_R,peak_R,exp_G,trans_G,peak_G,
 		exp_B,trans_B,peak_B,fastmode,threads_number,sleep,env);
@@ -27791,69 +25412,11 @@ AVSValue __cdecl Create_ConvertXYZ_Reinhard_HDRtoSDR(AVSValue args, void* user_d
 	const bool SetAffinity=args[23].AsBool(false);
 	const bool sleep = args[24].AsBool(false);
 	int prefetch=args[25].AsInt(0);
-	int thread_level=args[26].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertXYZ_Reinhard_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertXYZ_Reinhard_HDRtoSDR(args[0].AsClip(),exp_X,contr_X,peak_X,exp_Y,contr_Y,peak_Y,
 		exp_Z,contr_Z,peak_Z,pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,fastmode,threads_number,sleep,env);
@@ -27890,7 +25453,6 @@ AVSValue __cdecl Create_ConvertRGB_Reinhard_HDRtoSDR(AVSValue args, void* user_d
 	const bool SetAffinity=args[14].AsBool(false);
 	const bool sleep = args[15].AsBool(false);
 	int prefetch=args[16].AsInt(0);
-	int thread_level=args[17].AsInt(6);
 
 	if ((contr_R==0.0) || (contr_G==0.0) || (contr_B==0.0) ||
 		(peak_R==0.0) || (peak_G==0.0) || (peak_B==0.0))
@@ -27898,65 +25460,8 @@ AVSValue __cdecl Create_ConvertRGB_Reinhard_HDRtoSDR(AVSValue args, void* user_d
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertRGB_Reinhard_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertRGB_Reinhard_HDRtoSDR(args[0].AsClip(),exp_R,contr_R,peak_R,exp_G,contr_G,peak_G,
 		exp_B,contr_B,peak_B,fastmode,threads_number,sleep,env);
@@ -27984,72 +25489,14 @@ AVSValue __cdecl Create_ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR(AVSValue args, v
 	const bool SetAffinity=args[8].AsBool(false);
 	const bool sleep=args[9].AsBool(false);
 	int prefetch=args[10].AsInt(0);
-	int thread_level=args[11].AsInt(6);
 
 	if ((Lhdr<=0.0) || (Lhdr>10000.0) || (Lsdr<=0.0) || (Lsdr>100.0))
 		env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Wrong parameter value!");
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConvertLinearRGBtoYUV_BT2446_A_HDRtoSDR(args[0].AsClip(),Lhdr,Lsdr,CoeffAdj,
 		fastmode,threads_number,sleep,env);
@@ -28155,69 +25602,11 @@ AVSValue __cdecl Create_ConverXYZ_BT2446_C_HDRtoSDR(AVSValue args, void* user_da
 	const bool SetAffinity=args[24].AsBool(false);
 	const bool sleep=args[25].AsBool(false);
 	int prefetch=args[26].AsInt(0);
-	int thread_level=args[27].AsInt(6);
 
 	const bool avsp=env->FunctionExists("ConvertBits");
 
-	if ((threads<0) || (threads>MAX_MT_THREADS))
-		env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: [threads] must be between 0 and %ld.",MAX_MT_THREADS);
-	if (prefetch==0) prefetch=1;
-	if ((prefetch<0) || (prefetch>MAX_THREAD_POOL))
-		env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: [prefetch] must be between 0 and %d.",MAX_THREAD_POOL);
-	if ((thread_level<1) || (thread_level>7))
-		env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: [ThreadLevel] must be between 1 and 7.");
 
 	uint8_t threads_number=1;
-
-	if (threads!=1)
-	{
-		const ThreadLevelName TabLevel[8]={NoneThreadLevel,IdleThreadLevel,LowestThreadLevel,
-			BelowThreadLevel,NormalThreadLevel,AboveThreadLevel,HighestThreadLevel,CriticalThreadLevel};
-
-		if (!poolInterface->CreatePool(prefetch)) env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Unable to create ThreadPool!");
-
-		threads_number=poolInterface->GetThreadNumber(threads,LogicalCores);
-
-		if (threads_number==0) env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error with the TheadPool while getting CPU info!");
-
-		if (threads_number>1)
-		{
-			if (prefetch>1)
-			{
-				if (SetAffinity && (prefetch<=poolInterface->GetPhysicalCoreNumber()))
-				{
-					float delta=(float)poolInterface->GetPhysicalCoreNumber()/(float)prefetch,Offset=0.0f;
-
-					for(uint8_t i=0; i<prefetch; i++)
-					{
-						if (!poolInterface->AllocateThreads(threads_number,(uint8_t)ceil(Offset),0,MaxPhysCores,
-							true,true,TabLevel[thread_level],i))
-						{
-							poolInterface->DeAllocateAllThreads(true);
-							env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-						}
-						Offset+=delta;
-					}
-				}
-				else
-				{
-					if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,false,true,TabLevel[thread_level],-1))
-					{
-						poolInterface->DeAllocateAllThreads(true);
-						env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-					}
-				}
-			}
-			else
-			{
-				if (!poolInterface->AllocateThreads(threads_number,0,0,MaxPhysCores,SetAffinity,true,TabLevel[thread_level],-1))
-				{
-					poolInterface->DeAllocateAllThreads(true);
-					env->ThrowError("ConverXYZ_BT2446_C_HDRtoSDR: Error with the TheadPool while allocating threadpool!");
-				}
-			}
-		}
-	}
 
 	return new ConverXYZ_BT2446_C_HDRtoSDR(args[0].AsClip(),ChromaC,PQMode,Lhdr,Lsdr,pct_ref,pct_ip,pct_wp,
 		pct_sdr_skin,pct_hdr_skin,WhiteShift,pRx,pRy,pGx,pGy,pBx,pBy,pWx,pWy,fastmode,threads_number,sleep,env);
@@ -28228,10 +25617,7 @@ extern "C" __declspec(dllexport) const char* __stdcall AvisynthPluginInit3(IScri
 {
 	AVS_linkage = vectors;
 
-	poolInterface=ThreadPoolInterface::Init(0);
 	SetCPUMatrixClass((env->GetCPUFlags() & CPUF_SSE2)!=0,(env->GetCPUFlags() & CPUF_AVX)!=0,(env->GetCPUFlags() & CPUF_AVX2)!=0);
-
-	if (!poolInterface->GetThreadPoolInterfaceStatus()) env->ThrowError("HDRTools: Error with the TheadPool status!");
 
     env->AddFunction("ConvertYUVtoLinearRGB",
 		"c[Color]i[OutputMode]i[HDRMode]i[HLGLb]f[HLGLw]f[HLGColor]i[OOTF]b[EOTF]b[fullrange]b[mpeg2c]b" \

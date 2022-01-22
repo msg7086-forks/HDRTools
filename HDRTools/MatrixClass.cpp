@@ -29,110 +29,116 @@
 #define AVX2_BUILD_POSSIBLE
 #endif
 
-extern "C" void CoeffProductF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffProductF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffProductD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void CoeffProductD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+#ifndef _WIN32
+#define MS_ABI __attribute__((ms_abi))
+#else
+#define MS_ABI
+#endif
 
-extern "C" void CoeffProduct2F_SSE2(const float *coeff_a,float *coeff_b,uint16_t lght);
-extern "C" void CoeffProduct2F_AVX(const float *coeff_a,float *coeff_b,uint16_t lght);
-extern "C" void CoeffProduct2D_SSE2(const double *coeff_a,double *coeff_b,uint16_t lght);
-extern "C" void CoeffProduct2D_AVX(const double *coeff_a,double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffProductF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffProductF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffProductD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffProductD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
 
-extern "C" void CoeffAddProductF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffAddProductF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffAddProductD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void CoeffAddProductD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffProduct2F_SSE2(const float *coeff_a,float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffProduct2F_AVX(const float *coeff_a,float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffProduct2D_SSE2(const double *coeff_a,double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffProduct2D_AVX(const double *coeff_a,double *coeff_b,uint16_t lght);
 
-extern "C" void CoeffAddF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffAddF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffAddD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void CoeffAddD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddProductF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddProductF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddProductD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddProductD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
 
-extern "C" void CoeffAdd2F_SSE2(const float *coeff_a,float *coeff_b,uint16_t lght);
-extern "C" void CoeffAdd2F_AVX(const float *coeff_a,float *coeff_b,uint16_t lght);
-extern "C" void CoeffAdd2D_SSE2(const double *coeff_a,double *coeff_b,uint16_t lght);
-extern "C" void CoeffAdd2D_AVX(const double *coeff_a,double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffAddF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAddD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
 
-extern "C" void CoeffSubF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffSubF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void CoeffSubD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void CoeffSubD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffAdd2F_SSE2(const float *coeff_a,float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffAdd2F_AVX(const float *coeff_a,float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffAdd2D_SSE2(const double *coeff_a,double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffAdd2D_AVX(const double *coeff_a,double *coeff_b,uint16_t lght);
 
-extern "C" void CoeffSub2F_SSE2(const float *coeff_a,float *coeff_b,uint16_t lght);
-extern "C" void CoeffSub2F_AVX(const float *coeff_a,float *coeff_b,uint16_t lght);
-extern "C" void CoeffSub2D_SSE2(const double *coeff_a,double *coeff_b,uint16_t lght);
-extern "C" void CoeffSub2D_AVX(const double *coeff_a,double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffSubF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffSubF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffSubD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI CoeffSubD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
 
-extern "C" void VectorNorme2F_SSE2(const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorNorme2F_AVX(const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorNorme2D_SSE2(const double *coeff_x,double *result,uint16_t lght);
-extern "C" void VectorNorme2D_AVX(const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI CoeffSub2F_SSE2(const float *coeff_a,float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffSub2F_AVX(const float *coeff_a,float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffSub2D_SSE2(const double *coeff_a,double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI CoeffSub2D_AVX(const double *coeff_a,double *coeff_b,uint16_t lght);
 
-extern "C" void VectorNorme1F_SSE2(const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorNorme1F_AVX(const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorNorme1D_SSE2(const double *coeff_x,double *result,uint16_t lght);
-extern "C" void VectorNorme1D_AVX(const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme2F_SSE2(const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme2F_AVX(const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme2D_SSE2(const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme2D_AVX(const double *coeff_x,double *result,uint16_t lght);
 
-extern "C" void VectorNormeF_SSE2(const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorNormeF_AVX(const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorNormeD_SSE2(const double *coeff_x,double *result,uint16_t lght);
-extern "C" void VectorNormeD_AVX(const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme1F_SSE2(const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme1F_AVX(const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme1D_SSE2(const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorNorme1D_AVX(const double *coeff_x,double *result,uint16_t lght);
 
-extern "C" void VectorDist2F_SSE2(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
-extern "C" void VectorDist2F_AVX(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
-extern "C" void VectorDist2D_SSE2(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
-extern "C" void VectorDist2D_AVX(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorNormeF_SSE2(const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorNormeF_AVX(const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorNormeD_SSE2(const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorNormeD_AVX(const double *coeff_x,double *result,uint16_t lght);
 
-extern "C" void VectorDist1F_SSE2(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
-extern "C" void VectorDist1F_AVX(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
-extern "C" void VectorDist1D_SSE2(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
-extern "C" void VectorDist1D_AVX(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist2F_SSE2(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist2F_AVX(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist2D_SSE2(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist2D_AVX(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
 
-extern "C" void VectorDistF_SSE2(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
-extern "C" void VectorDistF_AVX(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
-extern "C" void VectorDistD_SSE2(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
-extern "C" void VectorDistD_AVX(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist1F_SSE2(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist1F_AVX(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist1D_SSE2(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorDist1D_AVX(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
 
-extern "C" void VectorProductF_SSE2(const float *coeff_a,const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorProductF_AVX(const float *coeff_a,const float *coeff_x,float *result,uint16_t lght);
-extern "C" void VectorProductD_SSE2(const double *coeff_a,const double *coeff_x,double *result,uint16_t lght);
-extern "C" void VectorProductD_AVX(const double *coeff_a,const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorDistF_SSE2(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorDistF_AVX(const float *coeff_x,const float *coeff_y,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorDistD_SSE2(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorDistD_AVX(const double *coeff_x,const double *coeff_y,double *result,uint16_t lght);
 
-extern "C" void VectorAddF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void VectorAddF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void VectorAddD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void VectorAddD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorProductF_SSE2(const float *coeff_a,const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorProductF_AVX(const float *coeff_a,const float *coeff_x,float *result,uint16_t lght);
+extern "C" void MS_ABI VectorProductD_SSE2(const double *coeff_a,const double *coeff_x,double *result,uint16_t lght);
+extern "C" void MS_ABI VectorProductD_AVX(const double *coeff_a,const double *coeff_x,double *result,uint16_t lght);
 
-extern "C" void VectorAdd2F_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorAdd2F_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorAdd2D_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
-extern "C" void VectorAdd2D_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorAddF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorAddF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorAddD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorAddD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
 
-extern "C" void VectorSubF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void VectorSubF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void VectorSubD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void VectorSubD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorAdd2F_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorAdd2F_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorAdd2D_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorAdd2D_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
 
-extern "C" void VectorSub2F_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorSub2F_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorSub2D_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
-extern "C" void VectorSub2D_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorSubF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorSubF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorSubD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorSubD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
 
-extern "C" void VectorInvSubF_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorInvSubF_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorInvSubD_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
-extern "C" void VectorInvSubD_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorSub2F_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorSub2F_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorSub2D_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorSub2D_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
 
-extern "C" void VectorProdF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void VectorProdF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
-extern "C" void VectorProdD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
-extern "C" void VectorProdD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorInvSubF_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorInvSubF_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorInvSubD_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorInvSubD_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
 
-extern "C" void VectorProd2F_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorProd2F_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
-extern "C" void VectorProd2D_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
-extern "C" void VectorProd2D_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorProdF_SSE2(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorProdF_AVX(const float *coeff_a,const float *coeff_b,float *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorProdD_SSE2(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+extern "C" void MS_ABI VectorProdD_AVX(const double *coeff_a,const double *coeff_b,double *coeff_c,uint16_t lght);
+
+extern "C" void MS_ABI VectorProd2F_SSE2(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorProd2F_AVX(float *coeff_a,const float *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorProd2D_SSE2(double *coeff_a,const double *coeff_b,uint16_t lght);
+extern "C" void MS_ABI VectorProd2D_AVX(double *coeff_a,const double *coeff_b,uint16_t lght);
 
 #define MATRIX_ALIGN_SIZE 64
 #define MATRIX_ALIGN_SHIFT 6

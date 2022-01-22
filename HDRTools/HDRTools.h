@@ -20,11 +20,16 @@
  *
  */
 
-#include "./avisynth.h"
-#include "./ThreadPoolInterface.h"
+#include <avisynth.h>
+#include <stddef.h>
 
 #define HDRTOOLS_VERSION "HDRTools 0.6.3 JPSDR"
+#define MAX_MT_THREADS 1
 
+#ifndef _WIN32
+  #define _aligned_malloc(a,b) aligned_alloc(b,a)
+  #define _aligned_free free
+#endif
 
 typedef struct _dataLookUp
 {
@@ -83,15 +88,10 @@ private:
 
 	dataLookUp dl;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[3][MAX_MT_THREADS];
 	uint8_t threads,threads_number[3],max_threads;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -133,15 +133,10 @@ private:
 
 	dataLookUp dl;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[3][MAX_MT_THREADS];
 	uint8_t threads,threads_number[3],max_threads;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -179,15 +174,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -223,15 +213,10 @@ private:
 
 	dataLookUp dl;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[3][MAX_MT_THREADS];
 	uint8_t threads,threads_number[3],max_threads;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -272,15 +257,10 @@ private:
 
 	dataLookUp dl;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[3][MAX_MT_THREADS];
 	uint8_t threads,threads_number[3],max_threads;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -319,15 +299,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -352,15 +327,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -386,15 +356,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -429,15 +394,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -468,15 +428,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -509,15 +464,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -546,15 +496,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -587,15 +532,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -624,15 +564,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -660,15 +595,10 @@ private:
 	uint8_t pixelsize; // AVS16
 	uint8_t bits_per_pixel;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
-
 	void FreeData(void);
 };
 
@@ -710,17 +640,12 @@ private:
 
 	VideoInfo *vi_RGBPS;
 
-	Public_MT_Data_Thread MT_Thread[MAX_MT_THREADS];
 	MT_Data_Info_HDRTools MT_Data[MAX_MT_THREADS];
 	uint8_t threads,threads_number;
 	uint16_t UserId;
 	
 	double fdico(double a,double b,double k1,double x);
 	bool dicotomie(double k1,double &k3);
-
-	ThreadPoolFunction StaticThreadpoolF;
-
-	static void StaticThreadpool(void *ptr);
 
 	void FreeData(void);
 };

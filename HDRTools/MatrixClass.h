@@ -25,7 +25,12 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+#include <stddef.h>
 #include <math.h>
+#ifndef _WIN32
+  #define _aligned_malloc(a,b) aligned_alloc(b,a)
+  #define _aligned_free free
+#endif
 
 typedef enum COEFF_DATA_TYPE_ {DATA_NONE,DATA_DOUBLE,DATA_FLOAT,DATA_UINT64,DATA_INT64,
 	DATA_UINT32,DATA_INT32,DATA_UINT16,DATA_INT16,DATA_UINT8,DATA_INT8} COEFF_DATA_TYPE;

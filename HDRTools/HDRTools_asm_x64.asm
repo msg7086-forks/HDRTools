@@ -20,10 +20,6 @@
 ;
 ;
 
-.data
-
-align 16
-
 data segment align(32)
 
 data_f_0 real4 8 dup(0.0)
@@ -57,9 +53,9 @@ data_w_8 word 16 dup(8)
 
 JPSDR_HDRTools_LookupRGB32_RGB32HLG proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -114,9 +110,9 @@ JPSDR_HDRTools_LookupRGB32_RGB32HLG endp
 
 JPSDR_HDRTools_LookupRGB32_RGB64HLG proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -167,9 +163,9 @@ JPSDR_HDRTools_LookupRGB32_RGB64HLG endp
 
 JPSDR_HDRTools_LookupRGB32_RGB64HLGb proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -225,9 +221,9 @@ JPSDR_HDRTools_LookupRGB32_RGB64HLGb endp
 
 JPSDR_HDRTools_LookupRGB32 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -284,9 +280,9 @@ JPSDR_HDRTools_LookupRGB32 endp
 
 JPSDR_HDRTools_LookupRGB32toRGB64 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -345,9 +341,9 @@ JPSDR_HDRTools_LookupRGB32toRGB64 endp
 
 JPSDR_HDRTools_LookupRGB64 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -404,9 +400,9 @@ JPSDR_HDRTools_LookupRGB64 endp
 
 JPSDR_HDRTools_Lookup_Planar8 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -456,9 +452,9 @@ JPSDR_HDRTools_Lookup_Planar8 endp
 
 JPSDR_HDRTools_Lookup_Planar16 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -508,9 +504,9 @@ JPSDR_HDRTools_Lookup_Planar16 endp
 
 JPSDR_HDRTools_Lookup_Planar32 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -561,12 +557,12 @@ JPSDR_HDRTools_Lookup_Planar32 endp
 
 JPSDR_HDRTools_Lookup2_Planar32 proc public frame
 
-h equ dword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo1 equ qword ptr[rbp+64]
-dst_modulo2 equ qword ptr[rbp+72]
-lookup1 equ qword ptr[rbp+80]
-lookup2 equ qword ptr[rbp+88]
+h equ dword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo1 equ qword ptr[rbp+72]
+dst_modulo2 equ qword ptr[rbp+80]
+lookup1 equ qword ptr[rbp+88]
+lookup2 equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -1185,16 +1181,16 @@ JPSDR_HDRTools_Convert_Planar422_to_Planar444_16_AVX endp
 
 JPSDR_HDRTools_Convert_YV24toRGB32_SSE2 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ word ptr[rbp+64]
-offset_G equ word ptr[rbp+72]
-offset_B equ word ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ word ptr[rbp+72]
+offset_G equ word ptr[rbp+80]
+offset_B equ word ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -1461,16 +1457,16 @@ JPSDR_HDRTools_Convert_YV24toRGB32_SSE2 endp
 
 JPSDR_HDRTools_Convert_YV24toRGB32_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ word ptr[rbp+64]
-offset_G equ word ptr[rbp+72]
-offset_B equ word ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ word ptr[rbp+72]
+offset_G equ word ptr[rbp+80]
+offset_B equ word ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -1732,16 +1728,16 @@ JPSDR_HDRTools_Convert_YV24toRGB32_AVX endp
 
 JPSDR_HDRTools_Convert_8_YV24toRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -1902,16 +1898,16 @@ JPSDR_HDRTools_Convert_8_YV24toRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_10_YV24toRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -2072,16 +2068,16 @@ JPSDR_HDRTools_Convert_10_YV24toRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_12_YV24toRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -2242,16 +2238,16 @@ JPSDR_HDRTools_Convert_12_YV24toRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_14_YV24toRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -2412,16 +2408,16 @@ JPSDR_HDRTools_Convert_14_YV24toRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_16_YV24toRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -2582,16 +2578,16 @@ JPSDR_HDRTools_Convert_16_YV24toRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_8_YV24toRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -2749,16 +2745,16 @@ JPSDR_HDRTools_Convert_8_YV24toRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_10_YV24toRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -2916,16 +2912,16 @@ JPSDR_HDRTools_Convert_10_YV24toRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_12_YV24toRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -3083,16 +3079,16 @@ JPSDR_HDRTools_Convert_12_YV24toRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_14_YV24toRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -3250,16 +3246,16 @@ JPSDR_HDRTools_Convert_14_YV24toRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_16_YV24toRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_R equ dword ptr[rbp+64]
-offset_G equ dword ptr[rbp+72]
-offset_B equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo_y equ qword ptr[rbp+96]
-src_modulo_u equ qword ptr[rbp+104]
-src_modulo_v equ qword ptr[rbp+112]
-dst_modulo equ qword ptr[rbp+120]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_R equ dword ptr[rbp+72]
+offset_G equ dword ptr[rbp+80]
+offset_B equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo_y equ qword ptr[rbp+104]
+src_modulo_u equ qword ptr[rbp+112]
+src_modulo_v equ qword ptr[rbp+120]
+dst_modulo equ qword ptr[rbp+128]
 
 	push rbp
 	.pushreg rbp
@@ -3422,13 +3418,13 @@ JPSDR_HDRTools_Convert_16_YV24toRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
-src_modulo_R equ qword ptr[rbp+72]
-src_modulo_G equ qword ptr[rbp+80]
-src_modulo_B equ qword ptr[rbp+88]
-dst_modulo equ qword ptr[rbp+96]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
+src_modulo_R equ qword ptr[rbp+80]
+src_modulo_G equ qword ptr[rbp+88]
+src_modulo_B equ qword ptr[rbp+96]
+dst_modulo equ qword ptr[rbp+104]
 
 	push rbp
 	.pushreg rbp
@@ -3583,13 +3579,13 @@ JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-lookup equ qword ptr[rbp+64]
-src_modulo_R equ qword ptr[rbp+72]
-src_modulo_G equ qword ptr[rbp+80]
-src_modulo_B equ qword ptr[rbp+88]
-dst_modulo equ qword ptr[rbp+96]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+lookup equ qword ptr[rbp+72]
+src_modulo_R equ qword ptr[rbp+80]
+src_modulo_G equ qword ptr[rbp+88]
+src_modulo_B equ qword ptr[rbp+96]
+dst_modulo equ qword ptr[rbp+104]
 
 	push rbp
 	.pushreg rbp
@@ -3810,12 +3806,12 @@ JPSDR_HDRTools_Convert_LinearRGBPStoRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_RGBPStoRGB64_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch_R equ qword ptr[rbp+64]
-src_pitch_G equ qword ptr[rbp+72]
-src_pitch_B equ qword ptr[rbp+80]
-dst_pitch equ qword ptr[rbp+88]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch_R equ qword ptr[rbp+72]
+src_pitch_G equ qword ptr[rbp+80]
+src_pitch_B equ qword ptr[rbp+88]
+dst_pitch equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -3954,12 +3950,12 @@ JPSDR_HDRTools_Convert_RGBPStoRGB64_SSE41 endp
 
 JPSDR_HDRTools_Convert_RGBPStoRGB64_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch_R equ qword ptr[rbp+64]
-src_pitch_G equ qword ptr[rbp+72]
-src_pitch_B equ qword ptr[rbp+80]
-dst_pitch equ qword ptr[rbp+88]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch_R equ qword ptr[rbp+72]
+src_pitch_G equ qword ptr[rbp+80]
+src_pitch_B equ qword ptr[rbp+88]
+dst_pitch equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -4148,22 +4144,22 @@ JPSDR_HDRTools_Convert_RGBPStoRGB64_AVX endp
 
 JPSDR_HDRTools_Convert_RGB32toYV24_SSE2 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_Y equ word ptr[rbp+64]
-offset_U equ word ptr[rbp+72]
-offset_V equ word ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo equ qword ptr[rbp+96]
-dst_modulo_y equ qword ptr[rbp+104]
-dst_modulo_u equ qword ptr[rbp+112]
-dst_modulo_v equ qword ptr[rbp+120]
-Min_Y equ word ptr[rbp+128]
-Max_Y equ word ptr[rbp+136]
-Min_U equ word ptr[rbp+144]
-Max_U equ word ptr[rbp+152]
-Min_V equ word ptr[rbp+160]
-Max_V equ word ptr[rbp+168]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_Y equ word ptr[rbp+72]
+offset_U equ word ptr[rbp+80]
+offset_V equ word ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo equ qword ptr[rbp+104]
+dst_modulo_y equ qword ptr[rbp+112]
+dst_modulo_u equ qword ptr[rbp+120]
+dst_modulo_v equ qword ptr[rbp+128]
+Min_Y equ word ptr[rbp+136]
+Max_Y equ word ptr[rbp+144]
+Min_U equ word ptr[rbp+152]
+Max_U equ word ptr[rbp+160]
+Min_V equ word ptr[rbp+168]
+Max_V equ word ptr[rbp+176]
 
 	push rbp
 	.pushreg rbp
@@ -4361,22 +4357,22 @@ JPSDR_HDRTools_Convert_RGB32toYV24_SSE2 endp
 
 JPSDR_HDRTools_Convert_RGB32toYV24_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_Y equ word ptr[rbp+64]
-offset_U equ word ptr[rbp+72]
-offset_V equ word ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo equ qword ptr[rbp+96]
-dst_modulo_y equ qword ptr[rbp+104]
-dst_modulo_u equ qword ptr[rbp+112]
-dst_modulo_v equ qword ptr[rbp+120]
-Min_Y equ word ptr[rbp+128]
-Max_Y equ word ptr[rbp+136]
-Min_U equ word ptr[rbp+144]
-Max_U equ word ptr[rbp+152]
-Min_V equ word ptr[rbp+160]
-Max_V equ word ptr[rbp+168]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_Y equ word ptr[rbp+72]
+offset_U equ word ptr[rbp+80]
+offset_V equ word ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo equ qword ptr[rbp+104]
+dst_modulo_y equ qword ptr[rbp+112]
+dst_modulo_u equ qword ptr[rbp+120]
+dst_modulo_v equ qword ptr[rbp+128]
+Min_Y equ word ptr[rbp+136]
+Max_Y equ word ptr[rbp+144]
+Min_U equ word ptr[rbp+152]
+Max_U equ word ptr[rbp+160]
+Min_V equ word ptr[rbp+168]
+Max_V equ word ptr[rbp+176]
 
 	push rbp
 	.pushreg rbp
@@ -4574,22 +4570,22 @@ JPSDR_HDRTools_Convert_RGB32toYV24_AVX endp
 
 JPSDR_HDRTools_Convert_RGB64toYV24_SSE41 proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_Y equ dword ptr[rbp+64]
-offset_U equ dword ptr[rbp+72]
-offset_V equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo equ qword ptr[rbp+96]
-dst_modulo_y equ qword ptr[rbp+104]
-dst_modulo_u equ qword ptr[rbp+112]
-dst_modulo_v equ qword ptr[rbp+120]
-Min_Y equ word ptr[rbp+128]
-Max_Y equ word ptr[rbp+136]
-Min_U equ word ptr[rbp+144]
-Max_U equ word ptr[rbp+152]
-Min_V equ word ptr[rbp+160]
-Max_V equ word ptr[rbp+168]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_Y equ dword ptr[rbp+72]
+offset_U equ dword ptr[rbp+80]
+offset_V equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo equ qword ptr[rbp+104]
+dst_modulo_y equ qword ptr[rbp+112]
+dst_modulo_u equ qword ptr[rbp+120]
+dst_modulo_v equ qword ptr[rbp+128]
+Min_Y equ word ptr[rbp+136]
+Max_Y equ word ptr[rbp+144]
+Min_U equ word ptr[rbp+152]
+Max_U equ word ptr[rbp+160]
+Min_V equ word ptr[rbp+168]
+Max_V equ word ptr[rbp+176]
 
 	push rbp
 	.pushreg rbp
@@ -4790,22 +4786,22 @@ JPSDR_HDRTools_Convert_RGB64toYV24_SSE41 endp
 
 JPSDR_HDRTools_Convert_RGB64toYV24_AVX proc public frame
 
-w equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-offset_Y equ dword ptr[rbp+64]
-offset_U equ dword ptr[rbp+72]
-offset_V equ dword ptr[rbp+80]
-lookup equ qword ptr[rbp+88]
-src_modulo equ qword ptr[rbp+96]
-dst_modulo_y equ qword ptr[rbp+104]
-dst_modulo_u equ qword ptr[rbp+112]
-dst_modulo_v equ qword ptr[rbp+120]
-Min_Y equ word ptr[rbp+128]
-Max_Y equ word ptr[rbp+136]
-Min_U equ word ptr[rbp+144]
-Max_U equ word ptr[rbp+152]
-Min_V equ word ptr[rbp+160]
-Max_V equ word ptr[rbp+168]
+w equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+offset_Y equ dword ptr[rbp+72]
+offset_U equ dword ptr[rbp+80]
+offset_V equ dword ptr[rbp+88]
+lookup equ qword ptr[rbp+96]
+src_modulo equ qword ptr[rbp+104]
+dst_modulo_y equ qword ptr[rbp+112]
+dst_modulo_u equ qword ptr[rbp+120]
+dst_modulo_v equ qword ptr[rbp+128]
+Min_Y equ word ptr[rbp+136]
+Max_Y equ word ptr[rbp+144]
+Min_U equ word ptr[rbp+152]
+Max_U equ word ptr[rbp+160]
+Min_V equ word ptr[rbp+168]
+Max_V equ word ptr[rbp+176]
 
 	push rbp
 	.pushreg rbp
@@ -5004,8 +5000,8 @@ JPSDR_HDRTools_Convert_RGB64toYV24_AVX endp
 
 JPSDR_HDRTools_Convert_Planar444_to_Planar422_8 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
 
 
 	push rbp
@@ -5061,8 +5057,8 @@ JPSDR_HDRTools_Convert_Planar444_to_Planar422_8 endp
 
 JPSDR_HDRTools_Convert_Planar444_to_Planar422_16 proc public frame
 
-src_modulo equ qword ptr[rbp+48]
-dst_modulo equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+56]
+dst_modulo equ qword ptr[rbp+64]
 
 
 	push rbp
@@ -5118,8 +5114,8 @@ JPSDR_HDRTools_Convert_Planar444_to_Planar422_16 endp
 
 JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -5207,8 +5203,8 @@ JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_SSE2 endp
 
 JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_SSE41 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -5296,8 +5292,8 @@ JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_SSE41 endp
 
 JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -5382,8 +5378,8 @@ JPSDR_HDRTools_Convert_Planar444_to_Planar422_8_AVX endp
 
 JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -5468,9 +5464,9 @@ JPSDR_HDRTools_Convert_Planar444_to_Planar422_16_AVX endp
 
 JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_SSE2 proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch2 equ qword ptr[rbp+56]
-dst_pitch equ qword ptr[rbp+64]
+h equ dword ptr[rbp+56]
+src_pitch2 equ qword ptr[rbp+64]
+dst_pitch equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -5526,9 +5522,9 @@ JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_SSE2 endp
 
 JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_SSE2 proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch2 equ qword ptr[rbp+56]
-dst_pitch equ qword ptr[rbp+64]
+h equ dword ptr[rbp+56]
+src_pitch2 equ qword ptr[rbp+64]
+dst_pitch equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -5584,9 +5580,9 @@ JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_SSE2 endp
 
 JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_AVX proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch2 equ qword ptr[rbp+56]
-dst_pitch equ qword ptr[rbp+64]
+h equ dword ptr[rbp+56]
+src_pitch2 equ qword ptr[rbp+64]
+dst_pitch equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -5642,9 +5638,9 @@ JPSDR_HDRTools_Convert_Planar422_to_Planar420_8_AVX endp
 
 JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_AVX proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch2 equ qword ptr[rbp+56]
-dst_pitch equ qword ptr[rbp+64]
+h equ dword ptr[rbp+56]
+src_pitch2 equ qword ptr[rbp+64]
+dst_pitch equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -5706,9 +5702,9 @@ JPSDR_HDRTools_Convert_Planar422_to_Planar420_16_AVX endp
 
 JPSDR_HDRTools_Convert_PackedXYZ_8_SSE2 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -5958,9 +5954,9 @@ JPSDR_HDRTools_Convert_PackedXYZ_8_SSE2 endp
 
 JPSDR_HDRTools_Convert_PackedXYZ_8_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -6209,9 +6205,9 @@ JPSDR_HDRTools_Convert_PackedXYZ_8_AVX endp
 
 JPSDR_HDRTools_Convert_PackedXYZ_16_SSE41 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -6358,9 +6354,9 @@ JPSDR_HDRTools_Convert_PackedXYZ_16_SSE41 endp
 
 JPSDR_HDRTools_Convert_PackedXYZ_16_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -6507,17 +6503,17 @@ JPSDR_HDRTools_Convert_PackedXYZ_16_AVX endp
 
 JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_SSE2 proc public frame
 
-dst2 equ qword ptr[rbp+48]
-dst3 equ qword ptr[rbp+56]
-w equ dword ptr[rbp+64]
-h equ dword ptr[rbp+72]
-Coeff equ qword ptr[rbp+80]
-src_modulo1 equ qword ptr[rbp+88]
-src_modulo2 equ qword ptr[rbp+96]
-src_modulo3 equ qword ptr[rbp+104]
-dst_modulo1 equ qword ptr[rbp+112]
-dst_modulo2 equ qword ptr[rbp+120]
-dst_modulo3 equ qword ptr[rbp+128]
+dst2 equ qword ptr[rbp+56]
+dst3 equ qword ptr[rbp+64]
+w equ dword ptr[rbp+72]
+h equ dword ptr[rbp+80]
+Coeff equ qword ptr[rbp+88]
+src_modulo1 equ qword ptr[rbp+96]
+src_modulo2 equ qword ptr[rbp+104]
+src_modulo3 equ qword ptr[rbp+112]
+dst_modulo1 equ qword ptr[rbp+120]
+dst_modulo2 equ qword ptr[rbp+128]
+dst_modulo3 equ qword ptr[rbp+136]
 
 	push rbp
 	.pushreg rbp
@@ -6622,17 +6618,17 @@ JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_SSE2 endp
 
 JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_SSE2 proc public frame
 
-dst2 equ qword ptr[rbp+48]
-dst3 equ qword ptr[rbp+56]
-w equ dword ptr[rbp+64]
-h equ dword ptr[rbp+72]
-Coeff equ qword ptr[rbp+80]
-src_modulo1 equ qword ptr[rbp+88]
-src_modulo2 equ qword ptr[rbp+96]
-src_modulo3 equ qword ptr[rbp+104]
-dst_modulo1 equ qword ptr[rbp+112]
-dst_modulo2 equ qword ptr[rbp+120]
-dst_modulo3 equ qword ptr[rbp+128]
+dst2 equ qword ptr[rbp+56]
+dst3 equ qword ptr[rbp+64]
+w equ dword ptr[rbp+72]
+h equ dword ptr[rbp+80]
+Coeff equ qword ptr[rbp+88]
+src_modulo1 equ qword ptr[rbp+96]
+src_modulo2 equ qword ptr[rbp+104]
+src_modulo3 equ qword ptr[rbp+112]
+dst_modulo1 equ qword ptr[rbp+120]
+dst_modulo2 equ qword ptr[rbp+128]
+dst_modulo3 equ qword ptr[rbp+136]
 
 	push rbp
 	.pushreg rbp
@@ -6751,17 +6747,17 @@ JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_SSE2 endp
 
 JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_AVX proc public frame
 
-dst2 equ qword ptr[rbp+48]
-dst3 equ qword ptr[rbp+56]
-w equ dword ptr[rbp+64]
-h equ dword ptr[rbp+72]
-Coeff equ qword ptr[rbp+80]
-src_modulo1 equ qword ptr[rbp+88]
-src_modulo2 equ qword ptr[rbp+96]
-src_modulo3 equ qword ptr[rbp+104]
-dst_modulo1 equ qword ptr[rbp+112]
-dst_modulo2 equ qword ptr[rbp+120]
-dst_modulo3 equ qword ptr[rbp+128]
+dst2 equ qword ptr[rbp+56]
+dst3 equ qword ptr[rbp+64]
+w equ dword ptr[rbp+72]
+h equ dword ptr[rbp+80]
+Coeff equ qword ptr[rbp+88]
+src_modulo1 equ qword ptr[rbp+96]
+src_modulo2 equ qword ptr[rbp+104]
+src_modulo3 equ qword ptr[rbp+112]
+dst_modulo1 equ qword ptr[rbp+120]
+dst_modulo2 equ qword ptr[rbp+128]
+dst_modulo3 equ qword ptr[rbp+136]
 
 	push rbp
 	.pushreg rbp
@@ -6927,17 +6923,17 @@ JPSDR_HDRTools_Convert_PlanarRGBtoXYZ_32_AVX endp
 
 JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_AVX proc public frame
 
-dst2 equ qword ptr[rbp+48]
-dst3 equ qword ptr[rbp+56]
-w equ dword ptr[rbp+64]
-h equ dword ptr[rbp+72]
-Coeff equ qword ptr[rbp+80]
-src_modulo1 equ qword ptr[rbp+88]
-src_modulo2 equ qword ptr[rbp+96]
-src_modulo3 equ qword ptr[rbp+104]
-dst_modulo1 equ qword ptr[rbp+112]
-dst_modulo2 equ qword ptr[rbp+120]
-dst_modulo3 equ qword ptr[rbp+128]
+dst2 equ qword ptr[rbp+56]
+dst3 equ qword ptr[rbp+64]
+w equ dword ptr[rbp+72]
+h equ dword ptr[rbp+80]
+Coeff equ qword ptr[rbp+88]
+src_modulo1 equ qword ptr[rbp+96]
+src_modulo2 equ qword ptr[rbp+104]
+src_modulo3 equ qword ptr[rbp+112]
+dst_modulo1 equ qword ptr[rbp+120]
+dst_modulo2 equ qword ptr[rbp+128]
+dst_modulo3 equ qword ptr[rbp+136]
 
 	push rbp
 	.pushreg rbp
@@ -7118,8 +7114,8 @@ JPSDR_HDRTools_Convert_PlanarXYZtoRGB_32_AVX endp
 
 JPSDR_HDRTools_Convert_RGB64toRGB32_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -7226,8 +7222,8 @@ JPSDR_HDRTools_Convert_RGB64toRGB32_SSE2 endp
 
 JPSDR_HDRTools_Convert_RGB64toRGB32_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -7332,9 +7328,9 @@ JPSDR_HDRTools_Convert_RGB64toRGB32_AVX endp
 
 JPSDR_HDRTools_Convert_RGB32toPlaneY16_SSE2 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -7567,9 +7563,9 @@ JPSDR_HDRTools_Convert_RGB32toPlaneY16_SSE2 endp
 
 JPSDR_HDRTools_Convert_RGB32toPlaneY16_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -7798,9 +7794,9 @@ JPSDR_HDRTools_Convert_RGB32toPlaneY16_AVX endp
 
 JPSDR_HDRTools_Convert_RGB64toPlaneY16_SSE41 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -8038,9 +8034,9 @@ JPSDR_HDRTools_Convert_RGB64toPlaneY16_SSE41 endp
 
 JPSDR_HDRTools_Convert_RGB64toPlaneY16_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -8278,9 +8274,9 @@ JPSDR_HDRTools_Convert_RGB64toPlaneY16_AVX endp
 
 JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_SSE41 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -8449,9 +8445,9 @@ JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_SSE41 endp
 
 JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -8620,9 +8616,9 @@ JPSDR_HDRTools_Convert_10_RGB64toPlaneY32_AVX endp
 
 JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_SSE41 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -8791,9 +8787,9 @@ JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_SSE41 endp
 
 JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -8962,9 +8958,9 @@ JPSDR_HDRTools_Convert_12_RGB64toPlaneY32_AVX endp
 
 JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_SSE41 proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -9122,9 +9118,9 @@ JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_SSE41 endp
 
 JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_AVX proc public frame
 
-lookup equ qword ptr[rbp+48]
-src_modulo equ qword ptr[rbp+56]
-dst_modulo equ qword ptr[rbp+64]
+lookup equ qword ptr[rbp+56]
+src_modulo equ qword ptr[rbp+64]
+dst_modulo equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -9281,8 +9277,8 @@ JPSDR_HDRTools_Convert_16_RGB64toPlaneY32_AVX endp
 ; h = r9d
 JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9358,8 +9354,8 @@ JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_SSE2 endp
 ; h = r9d
 JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9435,8 +9431,8 @@ JPSDR_HDRTools_Convert_RGB64_16toRGB64_8_AVX endp
 ; h = r9d
 JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9512,8 +9508,8 @@ JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_SSE2 endp
 ; h = r9d
 JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9589,8 +9585,8 @@ JPSDR_HDRTools_Convert_RGB64_16toRGB64_10_AVX endp
 ; h = r9d
 JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9666,8 +9662,8 @@ JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_SSE2 endp
 ; h = r9d
 JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9744,9 +9740,9 @@ JPSDR_HDRTools_Convert_RGB64_16toRGB64_12_AVX endp
 
 JPSDR_HDRTools_Scale_HLG_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff equ qword ptr[rbp+64]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -9803,9 +9799,9 @@ JPSDR_HDRTools_Scale_HLG_SSE2 endp
 
 JPSDR_HDRTools_Scale_HLG_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff equ qword ptr[rbp+64]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -9864,8 +9860,8 @@ JPSDR_HDRTools_Scale_HLG_AVX endp
 
 JPSDR_HDRTools_Scale_20_float_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9919,8 +9915,8 @@ JPSDR_HDRTools_Scale_20_float_SSE2 endp
 
 JPSDR_HDRTools_Scale_20_float_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -9977,15 +9973,15 @@ JPSDR_HDRTools_Scale_20_float_AVX endp
 
 JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_SSE2 proc public frame
 
-w4 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch_R equ qword ptr[rbp+64]
-src_pitch_G equ qword ptr[rbp+72]
-src_pitch_B equ qword ptr[rbp+80]
-dst_pitch equ qword ptr[rbp+88]
-Coeff_R equ qword ptr[rbp+96]
-Coeff_G equ qword ptr[rbp+104]
-Coeff_B equ qword ptr[rbp+112]
+w4 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch_R equ qword ptr[rbp+72]
+src_pitch_G equ qword ptr[rbp+80]
+src_pitch_B equ qword ptr[rbp+88]
+dst_pitch equ qword ptr[rbp+96]
+Coeff_R equ qword ptr[rbp+104]
+Coeff_G equ qword ptr[rbp+112]
+Coeff_B equ qword ptr[rbp+120]
 
 	push rbp
 	.pushreg rbp
@@ -10074,15 +10070,15 @@ JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_SSE2 endp
 
 JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_SSE2 proc public frame
 
-w4 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch_R equ qword ptr[rbp+64]
-src_pitch_G equ qword ptr[rbp+72]
-src_pitch_B equ qword ptr[rbp+80]
-dst_pitch equ qword ptr[rbp+88]
-Coeff_R equ qword ptr[rbp+96]
-Coeff_G equ qword ptr[rbp+104]
-Coeff_B equ qword ptr[rbp+112]
+w4 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch_R equ qword ptr[rbp+72]
+src_pitch_G equ qword ptr[rbp+80]
+src_pitch_B equ qword ptr[rbp+88]
+dst_pitch equ qword ptr[rbp+96]
+Coeff_R equ qword ptr[rbp+104]
+Coeff_G equ qword ptr[rbp+112]
+Coeff_B equ qword ptr[rbp+120]
 
 	push rbp
 	.pushreg rbp
@@ -10181,15 +10177,15 @@ JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_SSE2 endp
 
 JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_AVX proc public frame
 
-w8 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch_R equ qword ptr[rbp+64]
-src_pitch_G equ qword ptr[rbp+72]
-src_pitch_B equ qword ptr[rbp+80]
-dst_pitch equ qword ptr[rbp+88]
-Coeff_R equ qword ptr[rbp+96]
-Coeff_G equ qword ptr[rbp+104]
-Coeff_B equ qword ptr[rbp+112]
+w8 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch_R equ qword ptr[rbp+72]
+src_pitch_G equ qword ptr[rbp+80]
+src_pitch_B equ qword ptr[rbp+88]
+dst_pitch equ qword ptr[rbp+96]
+Coeff_R equ qword ptr[rbp+104]
+Coeff_G equ qword ptr[rbp+112]
+Coeff_B equ qword ptr[rbp+120]
 
 	push rbp
 	.pushreg rbp
@@ -10280,15 +10276,15 @@ JPSDR_HDRTools_Convert_RGBPStoPlaneY32F_AVX endp
 
 JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_AVX proc public frame
 
-w8 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch_R equ qword ptr[rbp+64]
-src_pitch_G equ qword ptr[rbp+72]
-src_pitch_B equ qword ptr[rbp+80]
-dst_pitch equ qword ptr[rbp+88]
-Coeff_R equ qword ptr[rbp+96]
-Coeff_G equ qword ptr[rbp+104]
-Coeff_B equ qword ptr[rbp+112]
+w8 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch_R equ qword ptr[rbp+72]
+src_pitch_G equ qword ptr[rbp+80]
+src_pitch_B equ qword ptr[rbp+88]
+dst_pitch equ qword ptr[rbp+96]
+Coeff_R equ qword ptr[rbp+104]
+Coeff_G equ qword ptr[rbp+112]
+Coeff_B equ qword ptr[rbp+120]
 
 	push rbp
 	.pushreg rbp
@@ -10388,8 +10384,8 @@ JPSDR_HDRTools_Convert_RGBPStoPlaneY32D_AVX endp
 	
 JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_SSE41 proc public frame	
 
-dst_pitch equ qword ptr[rbp+48]
-src_pitchY equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+56]
+src_pitchY equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -10481,8 +10477,8 @@ JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_SSE41 endp
 	
 JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_AVX proc public frame	
 
-dst_pitch equ qword ptr[rbp+48]
-src_pitchY equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+56]
+src_pitchY equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -10576,12 +10572,12 @@ JPSDR_HDRTools_Convert_16_RGB64_HLG_OOTF_AVX endp
 	
 JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_SSE2 proc public frame	
 
-w4 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-dst_pitch_R equ qword ptr[rbp+64]
-dst_pitch_G equ qword ptr[rbp+72]
-dst_pitch_B equ qword ptr[rbp+80]
-src_pitchY equ qword ptr[rbp+88]
+w4 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+dst_pitch_R equ qword ptr[rbp+72]
+dst_pitch_G equ qword ptr[rbp+80]
+dst_pitch_B equ qword ptr[rbp+88]
+src_pitchY equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -10663,12 +10659,12 @@ JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_SSE2 endp
 	
 JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_AVX proc public frame	
 
-w8 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-dst_pitch_R equ qword ptr[rbp+64]
-dst_pitch_G equ qword ptr[rbp+72]
-dst_pitch_B equ qword ptr[rbp+80]
-src_pitchY equ qword ptr[rbp+88]
+w8 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+dst_pitch_R equ qword ptr[rbp+72]
+dst_pitch_G equ qword ptr[rbp+80]
+dst_pitch_B equ qword ptr[rbp+88]
+src_pitchY equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -10749,12 +10745,12 @@ JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_AVX endp
 	
 JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_SSE2 proc public frame	
 
-w4 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-dst_pitch_R equ qword ptr[rbp+64]
-dst_pitch_G equ qword ptr[rbp+72]
-dst_pitch_B equ qword ptr[rbp+80]
-src_pitchY equ qword ptr[rbp+88]
+w4 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+dst_pitch_R equ qword ptr[rbp+72]
+dst_pitch_G equ qword ptr[rbp+80]
+dst_pitch_B equ qword ptr[rbp+88]
+src_pitchY equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -10840,12 +10836,12 @@ JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_SSE2 endp
 	
 JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_AVX proc public frame	
 
-w8 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-dst_pitch_R equ qword ptr[rbp+64]
-dst_pitch_G equ qword ptr[rbp+72]
-dst_pitch_B equ qword ptr[rbp+80]
-src_pitchY equ qword ptr[rbp+88]
+w8 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+dst_pitch_R equ qword ptr[rbp+72]
+dst_pitch_G equ qword ptr[rbp+80]
+dst_pitch_B equ qword ptr[rbp+88]
+src_pitchY equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -10935,10 +10931,10 @@ JPSDR_HDRTools_Convert_RGBPS_HLG_OOTF_Scale_AVX endp
 
 JPSDR_HDRTools_Scale_20_XYZ_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-ValMin equ qword ptr[rbp+64]
-Coeff equ qword ptr[rbp+72]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+ValMin equ qword ptr[rbp+72]
+Coeff equ qword ptr[rbp+80]
 
 	push rbp
 	.pushreg rbp
@@ -11004,10 +11000,10 @@ JPSDR_HDRTools_Scale_20_XYZ_SSE2 endp
 
 JPSDR_HDRTools_Scale_20_XYZ_SSE41 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-ValMin equ qword ptr[rbp+64]
-Coeff equ qword ptr[rbp+72]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+ValMin equ qword ptr[rbp+72]
+Coeff equ qword ptr[rbp+80]
 
 	push rbp
 	.pushreg rbp
@@ -11073,10 +11069,10 @@ JPSDR_HDRTools_Scale_20_XYZ_SSE41 endp
 
 JPSDR_HDRTools_Scale_20_XYZ_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-ValMin equ qword ptr[rbp+64]
-Coeff equ qword ptr[rbp+72]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+ValMin equ qword ptr[rbp+72]
+Coeff equ qword ptr[rbp+80]
 
 	push rbp
 	.pushreg rbp
@@ -11144,8 +11140,8 @@ JPSDR_HDRTools_Scale_20_XYZ_AVX endp
 
 JPSDR_HDRTools_Scale_20_RGB_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -11201,8 +11197,8 @@ JPSDR_HDRTools_Scale_20_RGB_SSE2 endp
 
 JPSDR_HDRTools_Scale_20_RGB_SSE41 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
 
 	push rbp
 	.pushreg rbp
@@ -11259,10 +11255,10 @@ JPSDR_HDRTools_Scale_20_RGB_SSE41 endp
 
 JPSDR_HDRTools_Scale_20_RGB_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-ValMin equ qword ptr[rbp+64]
-Coeff equ qword ptr[rbp+72]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+ValMin equ qword ptr[rbp+72]
+Coeff equ qword ptr[rbp+80]
 
 	push rbp
 	.pushreg rbp
@@ -11320,9 +11316,9 @@ JPSDR_HDRTools_Scale_20_RGB_AVX endp
 
 JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff equ qword ptr[rbp+64]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -11377,9 +11373,9 @@ JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_SSE2 endp
 
 JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff equ qword ptr[rbp+64]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -11436,9 +11432,9 @@ JPSDR_HDRTools_Convert_XYZ_HDRtoSDR_32_AVX endp
 
 JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff equ qword ptr[rbp+64]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -11493,9 +11489,9 @@ JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_SSE2 endp
 
 JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff equ qword ptr[rbp+64]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff equ qword ptr[rbp+72]
 
 	push rbp
 	.pushreg rbp
@@ -11552,14 +11548,14 @@ JPSDR_HDRTools_Convert_XYZ_SDRtoHDR_32_AVX endp
 
 JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff1 equ qword ptr[rbp+64]
-Coeff2 equ qword ptr[rbp+72]
-Coeff3 equ qword ptr[rbp+80]
-Coeff4 equ qword ptr[rbp+88]
-Coeff5 equ qword ptr[rbp+96]
-Coeff6 equ qword ptr[rbp+104]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff1 equ qword ptr[rbp+72]
+Coeff2 equ qword ptr[rbp+80]
+Coeff3 equ qword ptr[rbp+88]
+Coeff4 equ qword ptr[rbp+96]
+Coeff5 equ qword ptr[rbp+104]
+Coeff6 equ qword ptr[rbp+112]
 
 	push rbp
 	.pushreg rbp
@@ -11655,14 +11651,14 @@ JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_SSE2 endp
 
 JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff1 equ qword ptr[rbp+64]
-Coeff2 equ qword ptr[rbp+72]
-Coeff3 equ qword ptr[rbp+80]
-Coeff4 equ qword ptr[rbp+88]
-Coeff5 equ qword ptr[rbp+96]
-Coeff6 equ qword ptr[rbp+104]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff1 equ qword ptr[rbp+72]
+Coeff2 equ qword ptr[rbp+80]
+Coeff3 equ qword ptr[rbp+88]
+Coeff4 equ qword ptr[rbp+96]
+Coeff5 equ qword ptr[rbp+104]
+Coeff6 equ qword ptr[rbp+112]
 
 	push rbp
 	.pushreg rbp
@@ -11765,12 +11761,12 @@ JPSDR_HDRTools_Convert_XYZ_Hable_HDRtoSDR_AVX endp
 
 JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff1 equ qword ptr[rbp+64]
-Coeff2 equ qword ptr[rbp+72]
-Coeff3 equ qword ptr[rbp+80]
-Coeff4 equ qword ptr[rbp+88]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff1 equ qword ptr[rbp+72]
+Coeff2 equ qword ptr[rbp+80]
+Coeff3 equ qword ptr[rbp+88]
+Coeff4 equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -11861,12 +11857,12 @@ JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_SSE2 endp
 
 JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff1 equ qword ptr[rbp+64]
-Coeff2 equ qword ptr[rbp+72]
-Coeff3 equ qword ptr[rbp+80]
-Coeff4 equ qword ptr[rbp+88]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff1 equ qword ptr[rbp+72]
+Coeff2 equ qword ptr[rbp+80]
+Coeff3 equ qword ptr[rbp+88]
+Coeff4 equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -11960,10 +11956,10 @@ JPSDR_HDRTools_Convert_XYZ_Mobius_HDRtoSDR_AVX endp
 
 JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_SSE2 proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff1 equ qword ptr[rbp+64]
-Coeff2 equ qword ptr[rbp+72]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff1 equ qword ptr[rbp+72]
+Coeff2 equ qword ptr[rbp+80]
 
 	push rbp
 	.pushreg rbp
@@ -12026,10 +12022,10 @@ JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_SSE2 endp
 
 JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_AVX proc public frame
 
-src_pitch equ qword ptr[rbp+48]
-dst_pitch equ qword ptr[rbp+56]
-Coeff1 equ qword ptr[rbp+64]
-Coeff2 equ qword ptr[rbp+72]
+src_pitch equ qword ptr[rbp+56]
+dst_pitch equ qword ptr[rbp+64]
+Coeff1 equ qword ptr[rbp+72]
+Coeff2 equ qword ptr[rbp+80]
 
 	push rbp
 	.pushreg rbp
@@ -12095,14 +12091,14 @@ JPSDR_HDRTools_Convert_XYZ_Reinhard_HDRtoSDR_AVX endp
 
 JPSDR_HDRTools_BT2446C_16_XYZ_SSE2 proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch equ qword ptr[rbp+56]
-dst_pitch1 equ qword ptr[rbp+64]
-dst_pitch2 equ qword ptr[rbp+72]
-ValMinX equ qword ptr[rbp+80]
-CoeffX equ qword ptr[rbp+88]
-ValMinZ equ qword ptr[rbp+96]
-CoeffZ equ qword ptr[rbp+104]
+h equ dword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+64]
+dst_pitch1 equ qword ptr[rbp+72]
+dst_pitch2 equ qword ptr[rbp+80]
+ValMinX equ qword ptr[rbp+88]
+CoeffX equ qword ptr[rbp+96]
+ValMinZ equ qword ptr[rbp+104]
+CoeffZ equ qword ptr[rbp+112]
 
 	push rbp
 	.pushreg rbp
@@ -12204,14 +12200,14 @@ JPSDR_HDRTools_BT2446C_16_XYZ_SSE2 endp
 
 JPSDR_HDRTools_BT2446C_16_XYZ_SSE41 proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch equ qword ptr[rbp+56]
-dst_pitch1 equ qword ptr[rbp+64]
-dst_pitch2 equ qword ptr[rbp+72]
-ValMinX equ qword ptr[rbp+80]
-CoeffX equ qword ptr[rbp+88]
-ValMinZ equ qword ptr[rbp+96]
-CoeffZ equ qword ptr[rbp+104]
+h equ dword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+64]
+dst_pitch1 equ qword ptr[rbp+72]
+dst_pitch2 equ qword ptr[rbp+80]
+ValMinX equ qword ptr[rbp+88]
+CoeffX equ qword ptr[rbp+96]
+ValMinZ equ qword ptr[rbp+104]
+CoeffZ equ qword ptr[rbp+112]
 
 	push rbp
 	.pushreg rbp
@@ -12313,14 +12309,14 @@ JPSDR_HDRTools_BT2446C_16_XYZ_SSE41 endp
 
 JPSDR_HDRTools_BT2446C_16_XYZ_AVX proc public frame
 
-h equ dword ptr[rbp+48]
-src_pitch equ qword ptr[rbp+56]
-dst_pitch1 equ qword ptr[rbp+64]
-dst_pitch2 equ qword ptr[rbp+72]
-ValMinX equ qword ptr[rbp+80]
-CoeffX equ qword ptr[rbp+88]
-ValMinZ equ qword ptr[rbp+96]
-CoeffZ equ qword ptr[rbp+104]
+h equ dword ptr[rbp+56]
+src_pitch equ qword ptr[rbp+64]
+dst_pitch1 equ qword ptr[rbp+72]
+dst_pitch2 equ qword ptr[rbp+80]
+ValMinX equ qword ptr[rbp+88]
+CoeffX equ qword ptr[rbp+96]
+ValMinZ equ qword ptr[rbp+104]
+CoeffZ equ qword ptr[rbp+112]
 
 	push rbp
 	.pushreg rbp
@@ -12430,12 +12426,12 @@ JPSDR_HDRTools_BT2446C_16_XYZ_AVX endp
 
 JPSDR_HDRTools_BT2446C_32_XYZ_SSE2 proc public frame
 
-w4 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch1 equ qword ptr[rbp+64]
-src_pitch2 equ qword ptr[rbp+72]
-dst_pitch1 equ qword ptr[rbp+80]
-dst_pitch2 equ qword ptr[rbp+88]
+w4 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch1 equ qword ptr[rbp+72]
+src_pitch2 equ qword ptr[rbp+80]
+dst_pitch1 equ qword ptr[rbp+88]
+dst_pitch2 equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp
@@ -12507,12 +12503,12 @@ JPSDR_HDRTools_BT2446C_32_XYZ_SSE2 endp
 
 JPSDR_HDRTools_BT2446C_32_XYZ_AVX proc public frame
 
-w8 equ dword ptr[rbp+48]
-h equ dword ptr[rbp+56]
-src_pitch1 equ qword ptr[rbp+64]
-src_pitch2 equ qword ptr[rbp+72]
-dst_pitch1 equ qword ptr[rbp+80]
-dst_pitch2 equ qword ptr[rbp+88]
+w8 equ dword ptr[rbp+56]
+h equ dword ptr[rbp+64]
+src_pitch1 equ qword ptr[rbp+72]
+src_pitch2 equ qword ptr[rbp+80]
+dst_pitch1 equ qword ptr[rbp+88]
+dst_pitch2 equ qword ptr[rbp+96]
 
 	push rbp
 	.pushreg rbp

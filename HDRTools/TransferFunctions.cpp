@@ -29,7 +29,7 @@ static const double c2=18.8515625;
 static const double c3=18.6875;
 
 static const double alpha=1.09929682680944,alpham1=alpha-1.0,ialpha=1.0/alpha;
-static const double beta=0.018053968510807;
+static const double tf_beta=0.018053968510807;
 static const double alpha2=267.84,beta2=0.0003024,ialpha2=1.0/alpha2;
 static const double coeff_i12=1.0/12.0,coeff_i3=1.0/3.0,coeff_i45=1.0/0.45;
 static const double coeff_i24=1.0/2.404,coeff_i59=1.0/59.5208;
@@ -67,13 +67,13 @@ double HLG_inv_OOTF(double x)
 
 double inv_OETF(double x)
 {
-	if (x<(beta*4.5)) return(x*coeff_i45);
+	if (x<(tf_beta*4.5)) return(x*coeff_i45);
 	else return(pow(((x+alpham1))*ialpha,coeff_i45));
 }
 
 double OETF(double x)
 {
-	if (x<beta) return(x*4.5);
+	if (x<tf_beta) return(x*4.5);
 	else return(alpha*pow(x,0.45)-alpham1);
 }
 
