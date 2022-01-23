@@ -32,6 +32,7 @@
 #endif
 
 #ifndef _WIN32
+#define AVX2_BUILD_POSSIBLE
 #define MS_ABI __attribute__((ms_abi))
 #else
 #define MS_ABI
